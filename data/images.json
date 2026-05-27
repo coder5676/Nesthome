@@ -1,0 +1,42 @@
+{
+    "Shiv ji image":{
+        "file":"wall5.webp",
+        "tokens":["family","personal","mothers","moms","favourite"]
+    },
+    "image2":{
+        "file":"im6.jpg",
+        "tokens":["family"]
+
+    },
+    "image3":{
+        "file":"mymg.jpg",
+        "tokens":["family"]
+
+    },"image4":{
+        "file":"wall2.webp",
+        "tokens":["landscape","animation"]
+
+    
+},"image5":{
+        "file":"wallpaper.jpg",
+        "tokens":["landscape","animation"]
+
+    },
+"image6":{
+        "file":"ChatGPT Image May 16, 2026, 09_45_14 AM.png",
+        "tokens":["landscape","animation"]
+
+    },
+"image7":{
+        "file":"bgimgmovie.jpg",
+        "tokens":["animated","animation"]
+
+    },
+"image8":{
+        "file":"images.jpg",
+        "tokens":["animated","animation"]
+
+    }
+
+}
+

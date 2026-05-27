@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NestHome</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/4.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/4.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/4.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/4.0.0/uicons-thin-straight/css/uicons-thin-straight.css'>
+</head>
+
+<body>
+<div class="timer" id="timer">
+    <h2>Timer</h2>
+    <h3 id="tagtop">Going off in 20 minutes.</h3>
+    <div class="circlediv">
+        <h1 id="timertime"></h1>
+    </div>
+    <div class="anyimage"></div>
+</div>
+    <p id="prompt"></p>
+  <div class="commandpanel" id="commandarray">
+            <p><i class="fi fi-rr-alarm-clock"></i> | Set a reminder "watch movie" at 9:30 pm on 30 july. </p>
+            <p><i class="fi fi-tr-cloud-sun"></i> | What is the weather today.</p>
+            <p><i class="fi fi-rr-calendar-day"></i> | Open movies.</p>
+            <p><i class="fi fi-rr-calendar-clock"></i> | Add an event "Office meeting" for 12 june 2026.</p>
+            <p><i class="fi fi-rr-music-alt"></i> | Play party playlist.</p>
+            <p><i class="fi fi-tr-camera-movie"></i> | Play kung fu panda 3 movie.</p>
+            <p><i class="fi fi-rr-daily-calendar"></i> | What is the day today.</p>
+            <p><i class="fi fi-rr-picture"></i> | Set a slideshow of family photos.</p>
+            <p><i class="fi fi-rr-moon"></i> | Turn on night mode.</p>
+        </div>
+
+    <div class="reminderbox" id="reminderbox">
+        <p><i class="fi fi-rr-alarm-clock"></i>Reminder</p>
+        <div class="circlediv">
+            <h3 id="remtitle">Watch movie</h3>
+        </div>
+        <row><button>Say .• Snooze</button><button>Say .• Remove</button></row>
+
+    </div>
+
+
+    <div class="container" id="container2" style="display:flex;position:absolute;top:0;left:0;z-index: 31;animation-duration: 0.5s;background-position: center;background-size: contain;background-repeat: no-repeat;">
+        <img id="container2img">
+    <div class="bottomdiv">
+        <h1 id="time" class="time" style="color:rgb(0, 0, 0);font-size: 30px;margin-left: 30px; padding:15px;
+    background-color: white;
+    border-radius: 100px;">12:30</h1>
+        <h2 id="temp" class="temp"></h2>
+        
+
+    </div>
+
+
+
+    </div>
+
+
+    <div  class="container" id="container3" style="justify-content:center;display:none;position:fixed;top:0;left:0;">
+           <p id="time" class="time" style="position: fixed;top:20px;right:5%;z-index: 20;color:white;font-size: 30px;">12:30</p> 
+
+    </div>
+
+
+
+    <div class="container" id="container1" style="display:flex">
+        <div class="toppanel">
+            <p class="greetings" style="color: black;font-family:montserrat;font-weight:500;font-size: 25px;margin-left: 30px;">Good morning</p>
+            <p id="time" class="time">12:30</p>
+           </div>
+        
+      <!-- <p class="day" id="d1">
+            Sunday .• 1 March 2004 .• Guru purnima
+        </p>-->
+    
+        
+       <!--<h1 class="city" id="location">Raebareli, Uttar pradesh </h1>--> 
+        <div class="d3">
+             <div style="width:50%" class="entertainment" id="entertainment">
+                <div class="card12" id="card12">
+                    <div id="pla">
+                        <h5 id="title">Play some music using "play relaxing music" command.</h5>
+                        <audio controls id="musicplayer">
+                        </audio>
+                    </div>
+
+                </div>
+            </div>
+            <div style="width:57%;height:96%;display: flex;flex-wrap: wrap;justify-content: space-evenly;">
+            <div id="calinfo" class="calinfo">
+                <div class="seccaldiv">
+                <div>
+                    <h3 id="calheading">WEATHER</h3>
+                    <p>Say .• Nest</p>
+                    <h2 id="caltext">What is the weather in delhi</h2>
+
+                </div>
+                <div class="renderdiv">
+                     <h4 class="day" id="d1">
+            Sunday .• 1 March 2004 .• Guru purnima
+                     </h4>
+                     <div class="evcal2" id="evcal2" style="width:100%;height:100%;align-items: center;">
+                        
+                     </div>
+                     <div id="qrcode" style="display:flex"></div>
+                </div></div>
+
+            </div>
+            <div class="card1" id="card1">
+                <div class="incard1" id="incard1">
+                <p id="desc" class="desc"></p>
+                <h2 id="temp" class="temp"></h2>
+                <p id="feels"></p></div>
+            </div>
+            <div class="weathericon" id="weathericon" >
+                <h2 id="ic" class="ic"></h2>
+                <p id="desc2"></p>
+                <div class="daynight">
+                    <div><i class="fi fi-rr-brightness"></i>
+                        <p id="day" style="font-size: 17px;">12:30</p>
+                    </div>
+                    <div><i class="fi fi-rr-moon-stars"></i>
+                        <p id="night" style="font-size: 17px;">12:30</p>
+                    </div>
+                </div>
+
+            </div>
+           
+        </div>
+</div>
+    </div>
+
+
+
+
+
+    <div class="videodiv" style="display:none" id="videodiv" draggable="true">
+      
+        <video class="videoplayer" id="videoplayer" controls autoplay>
+
+
+
+
+        </video>
+    </div>
+    <div class="weatherapp" id="weatherapp">
+        <div class="div1" id="div1">
+            <div class="topbar1" id="topbar1">
+                <h2 class="city" style="font-size: 30px;margin:0px;margin-top:0px;margin-bottom: 20px;">Raebareli .• IN
+                </h2>
+                <h2 id="d5" class="day" style="font-size: 30px;font-family: lexend;margin:0px;font-weight: 300;">24
+                    march 2025</h2>
+            </div>
+            <h1 class="temp" id="maintemp" style="
+    font-family:lexend;
+    color: rgb(0, 0, 0);
+    margin:0px;
+    transition: all 0.6s ease;">
+
+            </h1>
+            <div class="hihi">
+                <h2 id="hilo"></h2>
+            </div>
+            <p class="desc" style="font-size: 40px;font-family: lexend;"></p>
+            <div class="forecast" id="forecast">
+
+            </div>
+
+        </div>
+        <div class="div2" id="div2">
+            <div class="topbar2">
+                <p style="color:black" id="greetings" class="greetings"></p> 
+                <div class="cont">
+                    <h3 id="h">Humidity <i class="fi fi-ts-raindrops"></i> .• 60% </h3>
+                    <h3 id="w">Wind now<i class="fi fi-ts-wind"></i>.• 34 km/h </h3>
+                    <h3 id="v">Visibility <i class="fi fi-ts-eye"></i>.• 1000 </h3>
+
+                </div>
+            </div>
+            <h2 class="gy">Next 24 hours forecast</h2>
+            <div class="hourly" id="hourly">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="calendardiv" id="calendardiv">
+        <div class="cont1">
+            <h3>Events for today.</h3>
+            <div class="events" id="events">
+                <div>
+                    <h4>Happy diwali</h4>
+                    <h5>All day</h5>
+                </div>
+            </div>
+        </div>
+        <div class="cont2">
+            <div class="header">
+                <button onclick="prevMonth()">Previous</button>
+
+                <h2 id="month"></h2>
+
+                <button onclick="nextMonth()">Next</button>
+            </div>
+
+            <!-- DAYS -->
+            <div class="days">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+
+            <!-- DATES -->
+            <div class="dates" id="dates"></div>
+
+        </div>
+
+    </div>
+
+    <div class="moviebox" id="moviebox">
+        <div style="width:100%;height:100vh;display:flex;align-items: center;justify-content: space-evenly;backdrop-filter: blur(30px);background-color: rgba(0, 0, 0, 0.179);">
+        <div class="topbarmov">
+            <p>Movies and Videos</p>
+        </div>
+        <div id="moviethumbnail">
+            <h4 id="watchtime"></h4>
+
+        </div>
+        <div id="movieinfo">
+            <h1 id="vidname"></h1>
+            <h3 id="tokens"></h3>
+            <button id="playmovie">Watch now</button>
+
+        </div></div>
+    </div>
+
+
+    </div>
+</body>
+
+</html>
+
+<script type="module" src="script.js"></script>
+<script type="module" src="player.js"></script>
+<script type= "module" src="voicerecognition.js"></script>
+<script  type= "module" src="calendar.js"></script>
+<script type="module" src="reminder.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>

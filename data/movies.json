@@ -1,0 +1,23 @@
+{
+  "Quiz app project showcase video": {
+    "file": "project.mp4",
+    "last_watched": 28.0,
+    "thumbnail": "Screenshot 2026-05-25 213600.png",
+    "tokens": [
+      "project",
+      "appvideo"
+    ]
+  },
+  "Youtube comedy video from Jordindian": {
+    "file": "comedyvideo.mp4",
+    "last_watched": 116.0,
+    "thumbnail": "Screenshot 2026-05-25 213532.png",
+    "tokens": [
+      "comedy",
+      "jordindian"
+    ]
+  },
+  "": {
+    "last_watched": 0.0
+  }
+}
