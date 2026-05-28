@@ -210,7 +210,7 @@ export function pausevideo(){
     video.pause();
   }
 
-}
+}/*
 let moviedata={}
 
     async function loadmoviedata(){
@@ -233,7 +233,7 @@ export async function openvideotube(){
     showmovies()
   }, 5000);
 
-}
+}*/
 function formatTime(seconds) {
 
   seconds = Math.floor(seconds);
@@ -257,7 +257,7 @@ function formatTime(seconds) {
   }
 
   return result.trim();
-}
+}/*
 function showmovies(){
    if(index>=moviekeys.length){
     index=0;
@@ -282,7 +282,7 @@ function showmovies(){
   index++;
 }
 
-
+*/
 
 export function closevideotube(){
   moviebox.style.display="none";
