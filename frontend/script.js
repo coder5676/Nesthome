@@ -1,6 +1,31 @@
 import { showevents } from "./calendar.js";
 import { speak } from "./voicerecognition.js";
-const serverurl="http://nesthub.local:8000"
+
+window.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const res = await fetch("http://127.0.0.1:8000/server-url");
+    const data = await res.json();
+
+    console.log("server url:", data.url);
+
+    generateQR(data.url);
+  } catch (err) {
+    console.log("QR init failed:", err);
+  }
+});
+window.addEventListener("online", () => {
+
+  console.log("Internet connected");
+
+  location.reload();
+
+});
+
+window.addEventListener("offline", () => {
+
+  console.log("Internet disconnected");
+
+});
 const maindiv = document.getElementById("container");
 let currcity="";
 let currtemp="";
@@ -57,10 +82,12 @@ document.querySelectorAll(".time").forEach((el)=>{
 })
   
 if(period=="Night"){
-  document.getElementById("card1").style.backgroundImage=`url("../thumbnails/day-and-night-portrait-background-with-trees-silhouette-free-vector2.jpg")`
+
+  document.getElementById("card1").style.backgroundImage=`url("http://127.0.0.1:8000/thumbnails/day-and-night-portrait-background-with-trees-silhouette-free-vector2.jpg")`
 }
 else{
-  document.getElementById("card1").style.backgroundImage=`url("../thumbnails/day-and-night-portrait-background-with-trees-silhouette-free-vector.jpg")`
+
+  document.getElementById("card1").style.backgroundImage=`url("http://127.0.0.1:8000/thumbnails/day-and-night-portrait-background-with-trees-silhouette-free-vector.jpg")`
 
 }
   // Date
@@ -122,8 +149,8 @@ async function getlocation() {
 
 
 function weathericon(description) {
-  const desc = ["clear sky", "few clouds", "scattered clouds", "broken clouds", "shower rain", "rain", "thunderstorm", "snow", "mist", "overcast clouds", "light rain", "moderate rain", "heavy intensity rain", "haze", "light intensity shower rain"];
-  const descicon = [`<i class="fi fi-tr-sun"></i>`, `<i class="fi fi-tr-cloud-sun"></i>`, '<i class="fi fi-rr-clouds-sun"></i>', '<i class="fi fi-tr-clouds"></i>', '<i class="fi fi-tr-cloud-showers-heavy"></i>', '<i class="fi fi-ts-umbrella"></i>', '<i class="fi fi-tr-thunderstorm"></i>', '<i class="fi fi-rr-snowflakes"></i>', '<i class="fi fi-rr-smog"></i>', '<i class="fi fi-ts-clouds"></i>', '<i class="fi fi-tr-cloud-rain"></i>', '<i class="fi fi-rs-cloud-hail-mixed"></i>', '<i class="fi fi-rr-cloud-hail"></i>', '<i class="fi fi-bs-cloud"></i>', '<i class="fi fi-ts-cloud-showers-heavy"></i>'];
+  const desc = ["clear sky", "few clouds", "scattered clouds", "broken clouds", "shower rain", "rain", "thunderstorm", "snow", "mist", "overcast clouds", "light rain", "moderate rain", "heavy intensity rain", "haze", "light intensity shower rain","dust"];
+  const descicon = [`<i class="fi fi-tr-sun"></i>`, `<i class="fi fi-tr-cloud-sun"></i>`, '<i class="fi fi-rr-clouds-sun"></i>', '<i class="fi fi-tr-clouds"></i>', '<i class="fi fi-tr-cloud-showers-heavy"></i>', '<i class="fi fi-ts-umbrella"></i>', '<i class="fi fi-tr-thunderstorm"></i>', '<i class="fi fi-rr-snowflakes"></i>', '<i class="fi fi-rr-smog"></i>', '<i class="fi fi-ts-clouds"></i>', '<i class="fi fi-tr-cloud-rain"></i>', '<i class="fi fi-rs-cloud-hail-mixed"></i>', '<i class="fi fi-rr-cloud-hail"></i>', '<i class="fi fi-rr-cloud-hail"></i>', '<i class="fi fi-ts-cloud-showers-heavy"></i>','<i class="fi fi-rr-sun-dust"></i>'];
 
   const position = desc.indexOf(description);
   return descicon[position];
@@ -131,8 +158,8 @@ function weathericon(description) {
 
 
 function desc(description) {
-  const quote = [" it's a nice weather outside.", "Clouds are beautiful outside", "Don't forget your umbrella", "Winds are speedy today", "Look plants can dance too.", "Weather is getting watery.", "Avoid going out it's lightning.", "Nice day for a snowman.", "Drive safe low visibility", "It could rain just wait", "Nice time for a tea", "Outside is beautiful in rain.", "Heavy rain avoid going out today", "It may be foggy outside", "Raining slowly carry an umbrella."];
-  const desc = ["clear sky", "few clouds", "scattered clouds", "broken clouds", "shower rain", "rain", "thunderstorm", "snow", "mist", "overcast clouds", "light rain", "moderate rain", "heavy intensity rain", "haze", "light intensity shower rain"];
+  const quote = [" it's a nice weather outside.", "Clouds are beautiful outside", "Don't forget your umbrella", "Winds are speedy today", "Look plants can dance too.", "Weather is getting watery.", "Avoid going out it's lightning.", "Nice day for a snowman.", "Drive safe low visibility", "It could rain just wait", "Nice time for a tea", "Outside is beautiful in rain.", "Heavy rain avoid going out today", "It may be foggy outside", "Raining slowly carry an umbrella.","Wear a mask while going outside."];
+  const desc = ["clear sky", "few clouds", "scattered clouds", "broken clouds", "shower rain", "rain", "thunderstorm", "snow", "mist", "overcast clouds", "light rain", "moderate rain", "heavy intensity rain", "haze", "light intensity shower rain","dust"];
   const position = desc.indexOf(description);
   return quote[position];
 };
@@ -333,9 +360,9 @@ function setdetails(data) {
     el.innerHTML = weathericon(description)
 
   });
-  document.getElementById("h").innerHTML = `Humidity <i class="fi fi-ts-raindrops"></i> .• ${data.main.humidity}%`;
-  document.getElementById("w").innerHTML = `Wind kmh <i class="fi fi-ts-wind"></i> .• ${data.wind.speed}km/h`;
-  document.getElementById("v").innerHTML = `Visibility <i class="fi fi-ts-eye"></i> .• ${data.visibility}`;
+  document.getElementById("h").innerHTML = `Today's humidity is ${data.main.humidity} %.`;
+  document.getElementById("w").innerHTML = `Wind is blowing at a speed of ${data.wind.speed} km/h.`;
+  document.getElementById("v").innerHTML = `Driving visibility is approx ${data.visibility} meters.`;
   document.getElementById("day").innerHTML = convert(data.sys.sunrise);
   document.getElementById("night").innerHTML = convert(data.sys.sunset);
 
@@ -366,6 +393,7 @@ export async function cityweatherquery(city){
 
 const alert=new Audio("timer.mp3");
 export function startTimer(time, unit) {
+  
 document.getElementById("tagtop").innerHTML=`Going off in ${time} ${unit}`
 let totalSeconds = 0;
 time=Number(time);
@@ -408,29 +436,42 @@ document.getElementById("timertime").innerHTML=`${hours}:${minutes}:${seconds}`
     }
 
   }, 1000);
+ 
 
 
 }
-export function generateQR(text){
+export function generateQR(text) {
+  const el = document.getElementById("qrcode");
 
-    document.getElementById("qrcode").innerHTML = "";
+  if (!el) {
+    console.log("QR container not found");
+    return;
+  }
 
-    new QRCode(document.getElementById("qrcode"), {
-        text: text,
-        width:400,
-        height:400,
-         colorDark: "#ffffff",
+  if (!text) {
+    console.log("QR text is empty");
+    return;
+  }
+
+  el.innerHTML = "";
+
+  new QRCode(el, {
+    text: text,
+    width: 300,
+    height: 300,
+    colorDark: "#ffffff",
     colorLight: "#00000000"
-    });
+  });
 }
-generateQR(serverurl);
+
 const heading=["WEATHER","CALENDAR","EVENT","MOVIES","TIMER","REMINDER","PICTURE FRAME","CONNECT","NIGHT MODE","Display"]
-const imagearr=["sad-female-character-standing-rain_132971-163.avif","63be5f30749ff7be7bb4a633ffac763f.gif","img4.webp","kung-fu-panda-po-jungle-staff-desktop-wallpaper-cover.jpg","timer.gif","reminder.webp","wall5.webp","ai.gif","woman-sleeping-in-bedroom-vector.jpg","mg3.avif"]
+const imagearr=["sad-female-character-standing-rain_132971-163.avif","img2.webp","img4.webp","kung-fu-panda-po-jungle-staff-desktop-wallpaper-cover.jpg","timer.gif","reminder.webp","wall5.webp","ai.gif","woman-sleeping-in-bedroom-vector.jpg","mg3.avif"]
 const prompts=["What is the weather in delhi.","What is the day today","Add an event 'Go Cycling' for 23 june 2026","Play 'Kung Fu Panda 3' movie","Add a timer for 20 minutes","Add a reminder 'watch movie' at 6 pm for today.","Set a slideshow of family photos.","Connect to my device.","Turn on night mode.","Turn on display mode"]
 const calinfo=document.getElementById("calinfo");
 const caltext=document.getElementById("caltext");
 const calheading=document.getElementById("calheading");
 let index=0;
+
 function setanimaitononscreen(){
  if (index == 1) {
 
@@ -456,7 +497,7 @@ else {
 
 
 }
-  calinfo.style.backgroundImage=`url(../thumbnails/${imagearr[index]})`;
+  calinfo.style.backgroundImage=`url(http://127.0.0.1:8000/thumbnails/${imagearr[index]})`;
   caltext.innerHTML=prompts[index];
   calheading.innerHTML=heading[index];
   index++;
@@ -468,7 +509,7 @@ else {
 setanimaitononscreen();
 setInterval(() => {
   setanimaitononscreen()
-}, 8000);
+}, 10000);
 
 
 //slideshow function
@@ -484,7 +525,7 @@ slideshowinterval=setInterval(() => {
 
     setslideshow();
 
-}, 6000);
+}, 60000);
 }
 function setslideshow(){
    if(slideshowarr.length === 0){
@@ -493,8 +534,9 @@ function setslideshow(){
   if(index2>=slideshowarr.length){
     index2=0;
   }
-  document.body.style.backgroundImage=`url(../slideshowimages/${slideshowarr[index2]})`;
-  document.getElementById("container2img").src=`../slideshowimages/${slideshowarr[index2]}`;
+  document.body.style.backgroundImage=`url(http://127.0.0.1:8000/images//${slideshowarr[index2]})`;
+  document.getElementById("imagename").innerHTML=slideshowarr[index2];
+ // document.getElementById("container2img").src=`http://127.0.0.1:8000/images/${slideshowarr[index2]}`;
 
   index2++;
 }
@@ -515,6 +557,7 @@ export function slideshowmode(){
   document.getElementById("container1").style.display="none";
 
 }
+
 export function mainmode(){
   document.getElementById("container1").style.display="flex";
 document.body.style.backgroundImage="";
