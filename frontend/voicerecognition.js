@@ -3,7 +3,7 @@ import { createplaylist } from "./player.js";
 import { renderCalendar } from "./calendar.js";
 import { showevents } from "./calendar.js";
 import { openweatherconsole } from "./script.js";
-import { openvideotube } from "./player.js";
+import {init,play} from "./tv.js";
 import { closevideotube } from "./player.js";
 import { closevideoplayer } from "./player.js";
 import { pausemusic } from "./player.js";
@@ -15,6 +15,8 @@ import { addEvent } from "./calendar.js";
 import { startTimer } from "./script.js";
 import { setimages } from "./script.js";
 import { removeReminder, snoozeReminder } from "./reminder.js";
+
+
 const p = document.getElementById("prompt");
 const d=document.getElementById("commandarray")
 let isListening = false;
@@ -153,7 +155,7 @@ console.log(songname)
 console.log(tokens)
             if(tokens.includes(songname)){
                 console.log(key);
-                speak(`Playing ${songname} from nest music.`);
+                speak(`Alright, playing ${songname} from home music.`);
                 playmusic(key);
 
 
@@ -185,7 +187,7 @@ console.log(tokens)
             }
         }
 console.log(playlistqueue)
-                speak(`Playing ${data.type} playlist from nest music.`);
+                speak(`Alright, Playing ${data.type} playlist from home music.`);
 
         createplaylist(playlistqueue);
     }
@@ -236,6 +238,7 @@ else if(data.intent==="CALENDAR"){
 }
 else if(data.intent==="ADDEVENT"){
     addEvent(data)
+    
 }
 else if(data.intent==="VIDEO"){
     await loadmoviedata();
@@ -244,11 +247,7 @@ else if(data.intent==="VIDEO"){
         .toLowerCase()
         .replace(/\s+/g, "")
         .trim();
-    if(data.type==="show" || data.name===""){
-        openvideotube();
-        speak("Opening movie section")
-    }
-    else if(data.name!==""){
+    if(data.name!==""){
         const moviename=data.name.toLowerCase().replace(/\s+/g,"").trim();
         console.log("this movie to play",data.name)
          for(const key in moviedata ){
@@ -260,7 +259,7 @@ else if(data.intent==="VIDEO"){
             if(tokens.includes(moviename)){
                 console.log(key)
                 playvideo(key);
-                speak(`Playing ${key}`)
+                speak(`Alright playing ${key}`)
                 return;
             }
         }
@@ -268,24 +267,37 @@ else if(data.intent==="VIDEO"){
     }
 
 }
+else if(data.intent==="TVMODE"){
+    init();
+    speak("Opening, Home TV")
+}
+else if(data.intent==="PLAYCURRENT"){
+play();
+}
 else if(data.intent==="STOP"){
     pausevideo();
     pausemusic();
+    speak("ok")
 }
 else if(data.intent==="CLOSE"){
 
     closevideoplayer();
+    speak("ok")
+}
+else if(data.intent==="CLOSETV"){
     closevideotube();
+    speak("ok")
 }
 else if(data.intent==="RELOAD"){
     reload();
 }
 else if(data.intent==="SNOOZE"){
     snoozeReminder();
-
+speak("Reminder snoozed")
 }
 else if(data.intent==="REMOVE"){
     removeReminder()
+speak("Reminder deleted")
 
 }
 else if(data.intent==="WEATHER"){
@@ -299,6 +311,7 @@ else if(data.intent==="WEATHER"){
 }
 else if(data.intent==="DISPLAY"){
 mainmode()
+speak("ok")
 }
 else if(data.intent === "SLIDESHOW") {
 
@@ -335,16 +348,21 @@ else if(data.intent === "SLIDESHOW") {
     console.log(imagesqueue);
 }
 else if(data.intent==="NIGHTMODE"){
-    nightmode()
+    nightmode();
+speak("Alright, turning on night mode")
+
 }
 else if(data.intent==="CONTINUE"){
 continueplaying();
+speak("ok")
 }
 else if(data.intent==="VOLUME"){
 setvolume(data.value);
+speak(`volume set to ${data.value}`)
 }
 else if(data.intent==="TIMER"){
-    startTimer(data.time,data.value.toLowerCase())
+    startTimer(data.time,data.value.toLowerCase());
+     speak(`Alright, starting timer.`);
 }
 } 
 
