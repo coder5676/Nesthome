@@ -35,13 +35,16 @@ body {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
+    cursor:none;
+    transition-duration: 0.7s;
 
 }
 
 .container {
     height: 100vh;
     width: 100%;
-    display: flex;
+    display:flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
@@ -49,52 +52,48 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     scrollbar-width: none;
-    color: white;
+    color: whitesmoke;
     overflow: hidden;
+    transition-duration: 0.5s;
+
 }
 
 .bottomdiv {
     width: 100%;
-    height: 100px;
+    height: 200px;
     display: flex;
     align-items: center;
     position: fixed;
     justify-content: space-between;
-    top: 0;
+    bottom: 50px;
     left:0;
-    font-family: lexend;
-    color:black;
+    font-family: montserrat;
+    color:rgb(250, 245, 245);
 
 }
 
 .bottomdiv h2 {
     font-size: 30px;
-    margin-left: 30px;
-    margin-top: 50px;
-    color: rgb(0, 0, 0);
-    font-family: comfortaa;
-    margin-right: 30px;
-
-    padding:15px;
-    background-color: white;
-    border-radius: 100px;
+    color: rgb(255, 255, 255);
+    font-family: montserrat;
+    margin-top: 0px;
+    margin-left: 10%;
+    margin-bottom: 30px;
 
 }
-
 
 #d1 {
 
     text-align: start;
     font-family: montserrat;
-    font-size: 30px;
-    font-weight: 400;
+    font-size: 50px;
+    font-weight: 700;
     margin-top: 10px;
     align-self: flex-end;
     margin-bottom: 20px;
     padding:20px;
     align-self: center;
-    background-color: white;
-    color:black;
+    color:rgb(255, 255, 255);
     border-radius: 20px;
     margin-left: 30px;
     display: none;
@@ -156,17 +155,21 @@ body {
 .weathericon,
 .card1 {
     height: 50%;
-    width: 46%;
-    border-radius: 20px;
+    width: 48%;
+    border-radius: 50px;
     display: flex;
     align-items: center;
     overflow: hidden;
      background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+
 }.weathericon{
     z-index: 20;
-}
+   
+}.card1{
+    box-shadow: 0px 0px 50px 10px rgb(223, 223, 223);
+margin-right: 2%;}
 .incard1{
     width:100%;
     height:100%;
@@ -227,30 +230,36 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: black;
+    background-color: rgb(255, 255, 255);
+    color:rgb(3, 3, 3);
+    box-shadow: 0px 0px 50px 10px rgb(190, 207, 212);
 
 }
 
 #ic {
-    font-size: 80px;
-    margin-top: 20px;
+    font-size: 40px;
+    margin-left: 30px;
+    align-self: flex-start;
+    margin-top: 10px;
     margin-bottom: 0px;
 }
 
 .entertainment {
     height: 95%;
-    max-width: 40%;
-    border-radius: 20px;
+    max-width: 48%;
+    border-radius: 50px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     color: white;
-    background-color: rgba(0, 0, 0, 0.163);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     overflow: hidden;
     margin-left: 20px;
-    background-image:url("../thumbnails/img2.webp");
+    box-shadow: 0px 0px 50px 10px rgb(223, 223, 223);
+
+    background-image: url("http://127.0.0.1:8000/thumbnails/audio.gif");
 }
 
 .card12 {
@@ -258,14 +267,31 @@ body {
     height: 100%;
     align-self: center;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
+    background-color: rgba(0, 0, 0, 0.226);
 
 
 
 }
-
+.card12 p{
+    padding:25px;
+    font-size: 20px;
+    background-color: white;
+    color:black;
+    font-family: montserrat;
+    align-self: flex-start;
+    margin-left: 30px;
+    border-radius: 100px;
+    display:flex;
+    align-items: center;
+}.card12 p i{
+    margin-right: 10px;
+    margin-bottom: 0px;
+    margin-top: 7px;
+}
 .card12 div {
     display: flex;
     flex-direction: column;
@@ -275,7 +301,7 @@ body {
 
 .card12 div button {
     background-color: transparent;
-    font-size: 35px;
+    font-size: 55px;
     margin-inline: 20px;
     border: 0px;
     color: white;
@@ -283,8 +309,8 @@ body {
 
 .card12 div h5 {
     font-family: montserrat;
-    font-weight: 400;
-    font-size: 40px;
+    font-weight: 600;
+    font-size: 50px;
     font-weight: 300;
     margin: 0px;
     align-self: center;
@@ -303,13 +329,13 @@ body {
     padding-inline: 2.5%;
     font-family: comfortaa;
     transition-duration: 0.3s;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
     position: fixed;
     top: -100%;
     left: 0;
     z-index: 50;
     margin-top: 0px;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     transition-duration: 0.3s;
 }
 #prompt::after {
@@ -327,9 +353,9 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    rgb(0, 0, 0),
-    mediumspringgreen,
-    rgb(0, 0, 0),
+    rgb(255, 255, 255),
+    rgb(162, 0, 255),
+    rgb(255, 255, 255),
     transparent
   );
 
@@ -354,9 +380,12 @@ body {
     animation-iteration-count: infinite;
 }
 #container2{
-    transition-duration: 0.6s;
-    backdrop-filter: blur(30px);
+    transition-duration: 0.7s;
+   
     justify-content: center;
+
+
+  
 }
 .active2 {
     animation-name: animation2;
@@ -380,7 +409,7 @@ body {
     background-color: black;
     top: 0;
     left: 0;
-    z-index: 24;
+    z-index: 41;
 
 }
 
@@ -394,6 +423,10 @@ body {
     left: 0;
     display: none;
     align-items: center;
+    background-position:center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    
 
 }
 
@@ -421,8 +454,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(229, 234, 240);
+  background-color: rgb(0, 0, 0);
+  color:white;
     overflow: hidden;
+    backdrop-filter: blur();
 
 }
 
@@ -438,7 +473,7 @@ body {
     margin-inline: 20px;
     font-size: 30px;
     font-family: comfortaa;
-    color: grey
+    color: black;
 }
 
 .forecast {
@@ -452,14 +487,14 @@ body {
 .forecast div {
     width: 13%;
     height: 70%;
-    border-radius: 25px;
+    border-radius: 30px;
     margin-inline: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    font-family: lexend;
-    background-color: white;
+    font-family: montserrat;
+    border:2px solid lightgrey;
 }
 
 .forecast h2 {
@@ -470,7 +505,7 @@ body {
 .forecast p {
     font-size: 20px;
     margin: 0px;
-    color: grey;
+    
     text-align: center;
 }
 
@@ -479,9 +514,13 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    width: 100%;
-    height: 45%;
-
+    width: 95%;
+    height: 40%;
+   
+    margin-top: 30px;
+    border-radius: 30px;
+    color:rgb(255, 255, 255);
+    
 }
 
 .topbar2 p {
@@ -492,7 +531,7 @@ body {
     margin: 0px;
     padding: 10px;
     text-align: center;
-    color: white;
+ 
     background-position: center;
     background-size: contain;
     height: 6vh;
@@ -500,40 +539,47 @@ body {
 }
 
 .cont h3 {
-    padding: 15px;
-    width: 70%;
-    color: rgb(0, 0, 0);
-    background-color: white;
+    width:90%;
+  
     border-radius: 100px;
-    font-family: comfortaa;
-    text-align: center;
+    font-family: montserrat;
+    font-size: 20px;
     margin-top: 0px;
     margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-weight: 500;
+    color:rgb(255, 255, 255);
+
 
 }
 
 .cont {
-    width: 100%;
+    width: 96%;
     display: flex;
     align-items: center;
     flex-direction: column;
+
+    border-radius: 30px;
 }
 
 .hourly {
-    width: 100%;
+    width: 95%;
     height: 50%;
+    margin-bottom: 3%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    border-radius: 30px;
+  
+    padding-top: 2%;
 }
 
 .hourly div {
     width: 20%;
     height: 160px;
-    background-color: white;
+
     margin: 2%;
     border-radius: 20px;
     display: flex;
@@ -551,12 +597,13 @@ body {
     font-size: 15px;
     margin: 10px;
     text-align: center;
+    color:white
 }
 
 .hourly div h2 {
     font-family: lexend;
     margin: 0px;
-    color: grey
+    color: rgb(255, 255, 255)
 }
 .fullscreentext {
     font-size: 70vh;
@@ -572,14 +619,16 @@ body {
 
 
 .gy {
-    padding: 10px;
     align-self: flex-start;
     margin-left: 20px;
-    background-color: black;
-    color: white;
-    font-family: comfortaa;
+    color: rgb(0, 0, 0);
+    font-family: montserrat;
+    font-weight: 500;
     border-radius: 200px;
-    font-size: 20px;
+    font-size: 18px;
+    padding:15px;
+    background-color: white;
+    border-radius: 100px;
 
 }
 
@@ -631,26 +680,17 @@ body {
     width: 20%;
     display: flex;
     flex-direction: column;
-    border-right: 2px solid lightgrey;
     align-items: center;
 
 }
-
-.cont1 h2 {
-    font-size: 25px;
-
-    font-family: comfortaa;
-
+.cont1 h1{
+    font-family: montserrat;
+    font-size: 140px;
+    font-weight: 700;
+    margin-bottom: 0px;
 }
 
-.cont1 p {
-    font-size: 25px;
-    padding: 10px;
-    margin: 20px;
-    border: 1px solid rgb(105, 105, 105);
-    border-radius: 20px;
 
-}
 
 .cont2 {
     width: 80%;
@@ -660,78 +700,13 @@ body {
     padding-left: 20px;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    font-family: lexend;
-
-    height: 12%
-}
-
-.header h2 {
-    font-size: 50px;
-    color: rgb(36, 55, 110);
-}
-
-.header button {
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    border: 2px solid rgb(0, 0, 0);
-    padding: 15px;
-    cursor: pointer;
-    font-family: lexend;
-    border-radius: 100px;
-    font-size: 18px;
-    width: 150px;
-    text-align: center;
-}
-
-.days,
-.dates {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    text-align: center;
+.cont2 h3 {
     font-size: 30px;
-}
-
-.days div {
-    font-size: 25px;
-    padding: 15px;
-    color: rgb(0, 0, 0);
-    font-family: montserrat;
-    border-radius: 100px;
-    font-weight: 400;
-    border: 2px solid lightgrey;
-
-}
-
-.dates div {
-    padding: 12px 0;
-    border-radius: 100px;
-    font-family: montserrat;
-    margin-top: 20px;
-    font-size: 25px;
-
-    background-color: whitesmoke;
-}
-
-.today {
-    background: rgb(0, 92, 255) !important;
-    color: white;
-}
-
-.cont1 h3 {
-    font-size: 20px;
     align-self: flex-start;
     margin-left: 20px;
-    font-family: lexend;
+    font-family: montserrat;
     font-weight: 400;
     padding: 15px;
-    border: 2px solid rgb(0, 92, 255);
-
     color: rgb(0, 0, 0);
     border-radius: 100px;
 }
@@ -741,39 +716,55 @@ body {
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: 60%;
+    height: 84%;
+   
 }
-
 .events div {
     width: 85%;
+    height:fit-content;
     margin: 10px;
     background-color: rgb(30, 92, 255);
     color: white;
-    border-radius: 15px;
+    border-radius: 30px;
     font-family: montserrat;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    padding: 10px;
+    justify-content: space-between;
+padding:20px;
 }
-
+.events div:nth-child(1){
+    background-color: white;
+    color:black;
+    border: 3px solid rgb(141, 141, 141);
+}
 .events div h4 {
-    font-size: 20px;
+    font-size: 50px;
     width: 100%;
-    text-align: center;
-    margin-top: 5px;
+    margin-inline: 30px;
+    margin-top: 0px;
     margin-bottom: 0px;
-}
+    font-weight: 400;
+    margin-top: 30px;
+    margin-bottom: 30px;
 
+}
+.events div h6{
+    font-size: 25px;
+    margin-left:30px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: 400;
+}
 .events div h5 {
-    padding: 10px;
-    color: rgb(255, 255, 255);
-    border: 2px solid white;
     width: fit-content;
     border-radius: 100px;
-    align-self: flex-end;
-    margin-right: 20px;
+    align-self: flex-start;
+    margin-left: 30px;
+    font-size: 25px;
     margin-bottom: 0px;
+    font-weight: 400;
+    margin-top: 0px;
+
 }
 
 .moviebox {
@@ -785,16 +776,16 @@ body {
    position: fixed;
    top:0;
    left:0;
-   z-index: 25;
+   z-index: 40;
    background-color: white;
-   display:flex;
+   display:none;
+ 
    align-items: center;
    justify-content: space-evenly;
    transition-duration: 0.4s;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgehuUOLaeGapDnu8baVHcJ-blUonJ77pWGg&s");
 
 }.topbarmov{
     position:fixed;
@@ -811,36 +802,38 @@ display:flex;
 flex-direction: column;
 width:100%;
 min-height:100vh;
-background-color: rgba(0, 0, 0, 0.271);
-backdrop-filter: blur(30px);
+background-color: rgba(0, 0, 0, 0.377);
+backdrop-filter: blur(20px);
 justify-content: flex-start;
 
 
 }
 .topbarmov p{
-    padding:15px;
+    padding:19px;
     background-color: transparent;
-    font-size: 18px;
+    font-size: 20px;
     color:rgb(255, 255, 255);
+    width:110px;
     margin-left: 30px;
     border-radius: 100px;
     min-width: 25px;
     font-weight: 500;
     text-align: center;
     transition-duration:0.4s;
+    user-select: none;
 }.tvdiv{
     display:flex;
-    align-items: center;
     justify-content: center;
     width:100%;
     height:85vh;
 }.tvdiv div{
-    width:40%;
+    width:45%;
     height:70%;
     background-color: rgba(0, 0, 0, 0);
-    margin-top:10vh;
+    margin-top:15vh;
     margin-inline: 4%;
     border-radius: 40px;
+   
 }
 .buttonsplay{
     width:90%;
@@ -851,8 +844,8 @@ justify-content: flex-start;
     justify-content: space-between;
 
 }.buttonsplay button{
-    padding:15px;
-    font-size: 15px;
+    padding:20px;
+    font-size: 25px;
     background-color: rgba(0, 0, 0, 0.427);
     color:white;
     font-family: lexend;
@@ -860,6 +853,7 @@ justify-content: flex-start;
     border-radius: 100px;
     border:0px;
     transition-duration: 0.5s;
+    user-select: none;
 }.movinfo{
     display:flex;
     flex-direction: column;
@@ -868,25 +862,36 @@ justify-content: flex-start;
 }.movinfo h2{
     margin-left: 10%;
     font-size: 30px;
+    user-select: none;
 }.movinfo h1{
     font-size: 50px;
     margin-left: 10%;
     font-weight: 300;
-}.movinfo h3{
-    margin-left: 10%;
-    font-size: 25px;
-    box-shadow: 0px 0px 10px 10px rgba(255, 255, 255, 0.271);
-    border-radius: 100px;
-    width:fit-content;
-    padding:10px;
-    font-weight: 400;
+    user-select: none;
 }.movinfo p{
     margin-left: 10%;
     font-size: 25px;
-
-}#movimg{
+margin-right: 5%;
+user-select: none;
+}.movinfo h5{
+    font-size: 25px;
+    padding:20px;
+    background-color: white;
+    margin-left:10%;
+    max-width: fit-content;
+    color:black;
+    border-radius: 100px;
+    font-weight: 500;
+    user-select: none;
+}
+#movimg{
     transition-duration: 0.5s;
     background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}#moviethumbnail{
+    background-position: center;
+    background-color: transparent;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -964,28 +969,46 @@ justify-content: flex-start;
     position: fixed;
     top:10vh;
     left:0;
-    display: none;
-    flex-direction: column;
-    background-color: rgb(0, 0, 0);
+    display:none;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    background-color: rgb(255, 255, 255);
     z-index: 50;
 
      
 }
 .commandpanel p{
-    margin-left: 30px;
     font-family: montserrat;
     font-weight: 500;
-    font-size: 20px;
-
-    color:rgb(255, 255, 255);
-}.commandpanel p:nth-child(1){
-    margin-top: 40px;
+    font-size: 30px;
+    width:14.5%;
+    max-height: 250px;
+    min-height: 250px;
+    padding:2%;
+    border-radius: 30px;
+    margin-left: 1%;
+    display: flex;
+    flex-direction: column;
+    font-weight: 400;
+    color:rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 100px 10px rgb(218, 227, 235);
+    margin-bottom: 0px;
+    margin-top: 3%;
+    margin-bottom: 3%;
 }
 .commandpanel i{
     padding:15px;
-    background-color: mediumspringgreen;
-   color:black;
+    margin-bottom: 30px;
+   color:rgb(0, 0, 0);
     border-radius: 100px;
+    padding:15px;
+    background-color: black;
+    color:white;
+    border-radius: 100px;
+    width:fit-content;
+    width:40px;
+    text-align: center;
 
 }#time{
     font-size: 25px;
@@ -1032,12 +1055,12 @@ justify-content: flex-start;
 
 
 }.calinfo{
-    width:95%;
-    border-radius: 20px;
+    width:100%;
+    border-radius: 50px;
     background-color: whitesmoke;
     height:46%;
     margin:0px;
-    background-image: url("../thumbnails/kung-fu-panda-po-jungle-staff-desktop-wallpaper-cover.jpg");
+    background-image: url("http://127.0.0.1:8000/thumbnails/kung-fu-panda-po-jungle-staff-desktop-wallpaper-cover.jpg");
     padding:0px;
     display: flex;
     align-items: center;
@@ -1046,6 +1069,8 @@ justify-content: flex-start;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+        box-shadow: 0px 0px 50px 10px rgb(223, 223, 223);
+
 
 }.seccaldiv{
     width:100%;
@@ -1063,11 +1088,11 @@ justify-content: flex-start;
     flex-direction: column;
 
 }.seccaldiv h3{
-    font-weight: 500;
+    font-weight: 400;
     margin-left: 20px;
-    font-size: 17px;
+    font-size: 20px;
     transition-duration: 0.4s;
-    padding:15px;
+    padding:18px;
     background-color: white;
     width:fit-content;
     color:black;
@@ -1078,15 +1103,16 @@ justify-content: flex-start;
     color:rgb(255, 255, 255);
     border-radius: 100px;
     width:fit-content;
-    margin-left: 30px;
+    margin-left: 40px;
     margin-bottom: 0px;
-    margin-top: 0px;
+    margin-top: 10px;
     transition-duration: 0.4s;
+    font-weight: 400;
 
 }.seccaldiv h2{
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 400;
-    margin-left: 20px;
+    margin-left: 40px;
     transition-duration: 0.4s;
 
 }.renderdiv{
@@ -1101,16 +1127,10 @@ justify-content: flex-start;
 }.evcal2{
     display:none;
 }.evcal2 p{
-    width:80%;
+    width:70%;
       background-color: rgba(255, 255, 255, 0.862);height:50px;border-radius: 20px;
       margin-top: 20px;display:flex;align-items: center;
       color:black;padding-inline: 5%;font-weight: 400;
-}#container2img{
-    width:auto;
-    height:auto;
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 30px;
 }#qrcode{
     align-self: center;
     margin-top: 20px;
@@ -1118,4 +1138,32 @@ justify-content: flex-start;
     background-color: rgba(0, 0, 0, 0);
     height:fit-content;
     border-radius: 20px;
+}#topbal{
+background-image: url('http://127.0.0.1:8000/thumbnails/hot-air-balloon.png');
+width:70px;height:70px;
+background-position: center;
+background-size: 50px;
+background-repeat: no-repeat;
+margin-left: 30px;
+margin-right: 0px;
+background-color:rgb(255, 255, 255);
+box-shadow: 0px 0px 10px 10px aliceblue;
+border-radius: 100px;
+
+}#songimg{
+    width:300px;
+    height:250px;
+
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-radius: 40px;
+    background-image: url("http://127.0.0.1:8000/thumbnails/audio.gif");
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+}.gu{
+    display: flex;
+    flex-direction: column;
+    height:100%;
+    width:59%;
 }
