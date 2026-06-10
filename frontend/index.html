@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/4.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+        <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/4.0.0/uicons-thin-straight/css/uicons-thin-straight.css'>
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/4.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/4.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
@@ -26,15 +27,15 @@
 </div>
     <p id="prompt"></p>
   <div class="commandpanel" id="commandarray">
-            <p><i class="fi fi-rr-alarm-clock"></i> | Set a reminder "watch movie" at 9:30 pm on 30 july. </p>
-            <p><i class="fi fi-tr-cloud-sun"></i> | What is the weather today.</p>
-            <p><i class="fi fi-rr-calendar-day"></i> | Open movies.</p>
-            <p><i class="fi fi-rr-calendar-clock"></i> | Add an event "Office meeting" for 12 june 2026.</p>
-            <p><i class="fi fi-rr-music-alt"></i> | Play party playlist.</p>
-            <p><i class="fi fi-tr-camera-movie"></i> | Play kung fu panda 3 movie.</p>
-            <p><i class="fi fi-rr-daily-calendar"></i> | What is the day today.</p>
-            <p><i class="fi fi-rr-picture"></i> | Set a slideshow of family photos.</p>
-            <p><i class="fi fi-rr-moon"></i> | Turn on night mode.</p>
+            <p><i class="fi fi-rr-alarm-clock"></i>Set a reminder "watch movie" at 9:30 pm on 30 july. </p>
+            <p><i class="fi fi-tr-cloud-sun"></i>What is the weather today.</p>
+            <p><i class="fi fi-rr-calendar-day"></i>Open TV.</p>
+            <p><i class="fi fi-rr-calendar-clock"></i>Add an event "Office meeting" for 12 june 2026.</p>
+            <p><i class="fi fi-rr-music-alt"></i>Play party playlist.</p>
+            <p><i class="fi fi-tr-camera-movie"></i>Play "Kung Fu Panda 3" movie.</p>
+            <p><i class="fi fi-rr-daily-calendar"></i>What is the day today.</p>
+            <p><i class="fi fi-rr-picture"></i>Set a slideshow of family photos.</p>
+            <p><i class="fi fi-rr-moon"></i>Turn on night mode.</p>
         </div>
 
     <div class="reminderbox" id="reminderbox">
@@ -46,15 +47,40 @@
 
     </div>
 
-
-    <div class="container" id="container2" style="display:flex;position:absolute;top:0;left:0;z-index: 31;animation-duration: 0.5s;background-position: center;background-size: contain;background-repeat: no-repeat;">
-        <img id="container2img">
+<div class="moviebox" id="moviebox">
+        <div id="movieintbar">
+        <div class="topbarmov">
+            <p style="box-shadow:0px 0px 10px 10px rgba(255, 255, 255, 0.338);color:white">Home TV</p>
+            <p id="a1">Videos</p>
+            <p id="a2">Music</p>
+            <p id="a3">Images</p>
+        </div>
+        <div class="tvdiv" id="movdiv">
+            <div class="movinfo">
+                <h2 id="g1">Home movies</h2>
+                <h1 id="g2">Despicable me 3</h1>
+                <p id="g4"></p>
+                
+                <h5>Say "Play" to play this.</h5>
+            </div>
+            <div id="moviethumbnail"></div>
+            
+        </div>
+    <div class="buttonsplay"><button id="prevbutton">Previous</button><button id="nextbutton">Next</button></div> 
+     
+      </div>
+    </div>
+    <div class="container" id="container2" style="display:none;position:absolute;top:0;left:0;z-index: 31;animation-duration: 0.5s;background-position: center;background-size: contain;background-repeat: no-repeat;">
+       
     <div class="bottomdiv">
-        <h1 id="time" class="time" style="color:rgb(0, 0, 0);font-size: 30px;margin-left: 30px; padding:15px;
-    background-color: white;
+        <div class="gu"><h1 id="time" class="time" style="color:rgb(255, 255, 255);font-size: 80px;margin-left: 30px;margin-bottom: 0px;
+    background-color: rgba(255, 255, 255, 0);
     border-radius: 100px;">12:30</h1>
-        <h2 id="temp" class="temp"></h2>
+    <div style="display:flex;align-items: center;width:390px;justify-content: end ;margin-bottom: 0px;"><h2 class="ic"></h2><h2 id="temp" class="temp" style="display:flex;align-items:center"></h2></div>
         
+        </div>
+
+        <div style="font-family: montserrat;width:40%;display:flex;flex-direction: column;align-items: flex-start;justify-content: flex-end;"><i class="fi fi-rr-picture"></i><p style="margin-right: 5%;padding:10px;background-color: white;border-radius: 100px;color:black" id="imagename"> Images slideshow created for you</p><p style="margin-right:5%;">This image is hosted by home server, connect to a device to add more images to show here.</p></div>
 
     </div>
 
@@ -72,7 +98,9 @@
 
     <div class="container" id="container1" style="display:flex">
         <div class="toppanel">
-            <p class="greetings" style="color: black;font-family:montserrat;font-weight:500;font-size: 25px;margin-left: 30px;">Good morning</p>
+           <div style="display:flex";height:100%;align-items:center;><div id="topbal"></div>
+            <p class="greetings" style="color: black;font-family:montserrat;font-weight:500;font-size: 25px;margin-left: 30px;"> Good morning</p>
+           </div>
             <p id="time" class="time">12:30</p>
            </div>
         
@@ -83,22 +111,25 @@
         
        <!--<h1 class="city" id="location">Raebareli, Uttar pradesh </h1>--> 
         <div class="d3">
-             <div style="width:50%" class="entertainment" id="entertainment">
+             <div  style="width:50%" class="entertainment" id="entertainment">
                 <div class="card12" id="card12">
+                    <p><i class="fi fi-ts-music-alt"></i> Home Music</p>
                     <div id="pla">
+                        <div id="songimg"></div>
                         <h5 id="title">Play some music using "play relaxing music" command.</h5>
-                        <audio controls id="musicplayer">
+                        <row><button><i class="fi fi-ts-step-backward"></i></button><button><i class="fi fi-tr-pause-circle"></i></button><button><i class="fi fi-ts-step-forward"></i></button></row>
+                        <audio  id="musicplayer">
                         </audio>
                     </div>
 
                 </div>
             </div>
-            <div style="width:57%;height:96%;display: flex;flex-wrap: wrap;justify-content: space-evenly;">
+            <div style="width:48%;height:96%;display: flex;flex-wrap: wrap;justify-content: space-evenly;margin-left: 1%;">
             <div id="calinfo" class="calinfo">
                 <div class="seccaldiv">
                 <div>
                     <h3 id="calheading">WEATHER</h3>
-                    <p>Say .• Nest</p>
+                    <p>Home Commands</p>
                     <h2 id="caltext">What is the weather in delhi</h2>
 
                 </div>
@@ -116,18 +147,18 @@
             <div class="card1" id="card1">
                 <div class="incard1" id="incard1">
                 <p id="desc" class="desc"></p>
-                <h2 id="temp" class="temp"></h2>
+                <h2 id="temp" class="temp" style="font-weight: 800;"></h2>
                 <p id="feels"></p></div>
             </div>
             <div class="weathericon" id="weathericon" >
                 <h2 id="ic" class="ic"></h2>
-                <p id="desc2"></p>
+                <p id="desc2" style="font-weight: 500;font-family: montserrat;font-size: 30px;"></p>
                 <div class="daynight">
                     <div><i class="fi fi-rr-brightness"></i>
-                        <p id="day" style="font-size: 17px;">12:30</p>
+                        <p id="day" style="font-size: 20px;">12:30</p>
                     </div>
                     <div><i class="fi fi-rr-moon-stars"></i>
-                        <p id="night" style="font-size: 17px;">12:30</p>
+                        <p id="night" style="font-size: 20px;">12:30</p>
                     </div>
                 </div>
 
@@ -143,7 +174,7 @@
 
     <div class="videodiv" style="display:none" id="videodiv" draggable="true">
       
-        <video class="videoplayer" id="videoplayer" controls autoplay>
+        <video class="videoplayer" id="videoplayer" controls preload= "auto" >
 
 
 
@@ -176,15 +207,15 @@
         </div>
         <div class="div2" id="div2">
             <div class="topbar2">
-                <p style="color:black" id="greetings" class="greetings"></p> 
+                <p style="color:rgb(255, 255, 255);height: 10vh;font-size: 35px;margin-top: 0px;align-self: flex-start;width:fit-content;margin-left: 10px;" id="greetings" class="greetings"></p> 
                 <div class="cont">
-                    <h3 id="h">Humidity <i class="fi fi-ts-raindrops"></i> .• 60% </h3>
-                    <h3 id="w">Wind now<i class="fi fi-ts-wind"></i>.• 34 km/h </h3>
-                    <h3 id="v">Visibility <i class="fi fi-ts-eye"></i>.• 1000 </h3>
+                    <h3 id="h">Humidity  .• 60% </h3>
+                    <h3 id="w">Wind now .• 34 km/h </h3>
+                    <h3 id="v">Visibility .• 1000 </h3>
 
                 </div>
             </div>
-            <h2 class="gy">Next 24 hours forecast</h2>
+            <h2 class="gy">Upcoming hours</h2>
             <div class="hourly" id="hourly">
             </div>
 
@@ -195,65 +226,28 @@
 
     <div class="calendardiv" id="calendardiv">
         <div class="cont1">
+             <h1 id=monther style="color:rgb(0,92,255);margin-top: 10px;"></h1>
+           <h1 id="dter" style="margin-top: 0px;"></h1>
+          
+        </div>
+        <div class="cont2">
             <h3>Events for today.</h3>
             <div class="events" id="events">
                 <div>
+                    <h3>The event is set for today.</h3>
                     <h4>Happy diwali</h4>
-                    <h5>All day</h5>
+                    <h5></h5>
                 </div>
-            </div>
-        </div>
-        <div class="cont2">
-            <div class="header">
-                <button onclick="prevMonth()">Previous</button>
-
-                <h2 id="month"></h2>
-
-                <button onclick="nextMonth()">Next</button>
             </div>
 
             <!-- DAYS -->
-            <div class="days">
-                <div>Sun</div>
-                <div>Mon</div>
-                <div>Tue</div>
-                <div>Wed</div>
-                <div>Thu</div>
-                <div>Fri</div>
-                <div>Sat</div>
-            </div>
-
-            <!-- DATES -->
-            <div class="dates" id="dates"></div>
+         
 
         </div>
 
     </div>
 
-   <div class="moviebox" id="moviebox">
-        <div id="movieintbar">
-        <div class="topbarmov">
-            <p style="box-shadow:0px 0px 10px 10px rgba(255, 255, 255, 0.338);color:white">Home TV</p>
-            <p id="a1">Videos</p>
-            <p id="a2">Music</p>
-            <p id="a3">Images</p>
-        </div>
-        <div class="tvdiv" id="movdiv">
-            <div class="movinfo">
-                <h2 id="g1">Home movies</h2>
-                <h1 id="g2">Despicable me 3</h1>
-                <h3 id="g3">Ask to play this movie using.</h3>
-                <p id="g4">Project . despicableme3. grumovie</p>
-            </div>
-            <div id="movimg">
-
-            </div>
-        </div>
-    <div class="buttonsplay"><button id="prevbutton">Previous</button><button id="nextbutton">Next</button></div> 
      
-      </div>
-    </div>
-
 
     </div>
 </body>
@@ -265,4 +259,5 @@
 <script type= "module" src="voicerecognition.js"></script>
 <script  type= "module" src="calendar.js"></script>
 <script type="module" src="reminder.js"></script>
+<script type="module" src="tv.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
