@@ -133,11 +133,7 @@ def intentrecogniton(text):
 
     elif ("movie" in text or "video" in text or "movies" in text) and ("event" not in text):
         text=text.lower()
-        if ("open" in text):
-            return {
-                "intent":"VIDEO",
-                "type":"show"
-            }
+        
         # play "movie name" video.
         moviename=(
         text.replace("play ","")
@@ -149,7 +145,18 @@ def intentrecogniton(text):
             "name":moviename,
             "type":None
         } 
-
+    elif (text=="close tv"):
+        return{
+            "intent":"CLOSETV"
+        }
+    elif ("tv" in text ):
+        return{
+            "intent":"TVMODE"
+        }
+    elif(text=="play"):
+        return{
+            "intent":"PLAYCURRENT"
+        }    
     elif (
         "night mode" in text or
         "nightmode" in text or 
