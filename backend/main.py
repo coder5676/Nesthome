@@ -8,16 +8,21 @@ from intentrecognition import intentrecogniton
 from datetime import datetime, timedelta
 from fastapi import UploadFile, File, Form
 import shutil
-
+import socket
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://127.0.0.1:5500",
+        "http://localhost:5500"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
 
 # Robust Directory Configuration
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -27,6 +32,7 @@ VIDEOS_DIR = os.path.join(ROOT_DIR, "videos")
 MUSIC_DIR = os.path.join(ROOT_DIR, "music")
 DATA_DIR = os.path.join(ROOT_DIR, "data")
 IMAGES_DIR=os.path.join(ROOT_DIR,"slideshowimages")
+THUMBNAILS_DIR=os.path.join(ROOT_DIR,"thumbnails")
 
 # Create data directory if it doesn't exist
 os.makedirs(DATA_DIR, exist_ok=True)
@@ -37,9 +43,10 @@ CALENDAR_FILE = os.path.join(DATA_DIR, "calendarEvents.json")
 REMINDER_FILE = os.path.join(DATA_DIR, "reminders.json")
 IMAGESJSON=os.path.join(DATA_DIR,"images.json")
 
-# Mounting static file engines for video and audio playback
-
-
+app.mount("/images", StaticFiles(directory=IMAGES_DIR), name="slideshowimages")
+app.mount("/thumbnails", StaticFiles(directory=THUMBNAILS_DIR), name="thumbnails")
+app.mount("/musicfolder", StaticFiles(directory=MUSIC_DIR), name="music")
+app.mount("/videos",StaticFiles(directory=VIDEOS_DIR),name="videos")
 # --- Safe File Data Bootstrapping ---
 def load_json_file(path):
     if os.path.exists(path):
@@ -68,19 +75,37 @@ class WatchData(BaseModel):
     movie: str
     last_watched: float
 
+#@app.get("/movie/{name}")
+#def get_movie(name: str):
+    #movies = load_json_file(MOVIEJSON)
+   # movie = movies.get(name)
+   # if movie:
+    #    return {
+    #        "found": True,
+    #        "name": name,
+      #      "file": movie.get("file"),
+     #       "last_watched": movie.get("last_watched", 0)
+    #    }
+   # return {"found": False, "error": "Movie not found"}
 @app.get("/movie/{name}")
 def get_movie(name: str):
+
     movies = load_json_file(MOVIEJSON)
+
     movie = movies.get(name)
+
     if movie:
         return {
             "found": True,
-            "name": name,
             "file": movie.get("file"),
-            "last_watched": movie.get("last_watched", 0)
+            "last_watched": movie.get("last_watched", 0),
+            "thumbnail": movie.get("thumbnail", ""),
+            "tokens": movie.get("tokens", [])
         }
-    return {"found": False, "error": "Movie not found"}
 
+    return {
+        "found": False
+    }
 @app.post("/recplayback")
 def rec_watched(data: WatchData):
     movies = load_json_file(MOVIEJSON)
@@ -378,6 +403,18 @@ async def add_image(
         "message": "Image added"
     }
 
+
+def get_local_ip():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(("8.8.8.8", 80))
+    ip = s.getsockname()[0]
+    s.close()
+    return ip
+
+@app.get("/server-url")
+def server_url():
+    ip = get_local_ip()
+    return {"url": f"http://{ip}:8000"}
 
 #const formData = new FormData();
 
