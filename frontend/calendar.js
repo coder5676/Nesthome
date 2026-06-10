@@ -1,5 +1,6 @@
 import { speak } from "./voicerecognition.js";
   let currentDate = new Date();
+
   export function renderCalendar(){
       let dayvalue=document.getElementById("d1").innerHTML;
       speak(`Today is ${dayvalue}`);
@@ -8,49 +9,20 @@ setTimeout(() => {
         document.getElementById("calendardiv").style.display="none";
 
 },10000);
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
+const months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+const day=new Date();
+let date=day.getDate();
+let month=months[day.getMonth()];
+document.getElementById("dter").innerHTML=date;
+document.getElementById("monther").innerHTML=month;
 
-    const firstDay =
-      new Date(year, month, 1).getDay();
 
-    const daysInMonth =
-      new Date(year, month + 1, 0).getDate();
 
-    document.getElementById("month").innerHTML =
-      currentDate.toLocaleDateString("en-US",{
-        month:"long",
-        year:"numeric"
-      });
 
-    let html = "";
-
-    // EMPTY BOXES BEFORE MONTH STARTS
-    for(let i=0;i<firstDay;i++){
-      html += `<div></div>`;
-    }
-
-    const today = new Date();
-
-    // ADD DAYS
-    for(let day=1;day<=daysInMonth;day++){
-
-      let isToday =
-        day === today.getDate() &&
-        month === today.getMonth() &&
-        year === today.getFullYear();
-
-      html += `
-        <div class="${isToday ? "today" : ""}">
-          ${day}
-        </div>
-      `;
-    }
-
-    document.getElementById("dates").innerHTML = html;
   
     
   }
+ 
 export async function showevents() {
   const today = new Date().toLocaleDateString("en-GB", {
     day: "numeric",
@@ -76,8 +48,9 @@ export async function showevents() {
 
       html += `
         <div>
+        <h6>This event is set for today only.</h6>
           <h4>${title}</h4>
-          <h5>Whole Day</h5>
+          <h5>Event Timing: 12:00 AM to 11:59 PM</h5>
         </div>
       `;
       html2+=`<p id="evname"> ${title}</p>
@@ -144,19 +117,10 @@ export async function removeOldEvents() {
 }
 
 
-  function prevMonth(){
-    currentDate.setMonth(currentDate.getMonth() - 1);
-    renderCalendar();
-  }
-
-  function nextMonth(){
-    currentDate.setMonth(currentDate.getMonth() + 1);
-    renderCalendar();
-  }
-
-
+ 
 export async function addEvent(data){
 removeOldEvents();
+speak(`Alright, adding event ${data.name} on ${data.date}`)
     const response = await fetch(
         "http://127.0.0.1:8000/calendaraddevent",
         {
@@ -176,7 +140,7 @@ removeOldEvents();
     const newdata = await response.json();
 
     console.log(newdata);
-    speak(`event added ${data.name} on ${data.date}`)
+    
 }
 
 //make server to recieve files mvies videos and images for slideshow 
