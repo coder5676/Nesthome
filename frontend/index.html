@@ -25,18 +25,7 @@
     </div>
     <div class="anyimage"></div>
 </div>
-    <p id="prompt"></p>
-  <div class="commandpanel" id="commandarray">
-            <p><i class="fi fi-rr-alarm-clock"></i>Set a reminder "watch movie" at 9:30 pm on 30 july. </p>
-            <p><i class="fi fi-tr-cloud-sun"></i>What is the weather today.</p>
-            <p><i class="fi fi-rr-calendar-day"></i>Open TV.</p>
-            <p><i class="fi fi-rr-calendar-clock"></i>Add an event "Office meeting" for 12 june 2026.</p>
-            <p><i class="fi fi-rr-music-alt"></i>Play party playlist.</p>
-            <p><i class="fi fi-tr-camera-movie"></i>Play "Kung Fu Panda 3" movie.</p>
-            <p><i class="fi fi-rr-daily-calendar"></i>What is the day today.</p>
-            <p><i class="fi fi-rr-picture"></i>Set a slideshow of family photos.</p>
-            <p><i class="fi fi-rr-moon"></i>Turn on night mode.</p>
-        </div>
+    
 
     <div class="reminderbox" id="reminderbox">
         <p><i class="fi fi-rr-alarm-clock"></i>Reminder</p>
@@ -72,15 +61,14 @@
     </div>
     <div class="container" id="container2" style="display:none;position:absolute;top:0;left:0;z-index: 31;animation-duration: 0.5s;background-position: center;background-size: contain;background-repeat: no-repeat;">
        
+    <div style="display:flex;align-items: flex-end;position: fixed;top:30px;right:4%;background-color: rgb(255, 255, 255);width:150px;border-radius: 100px;justify-content: center;"><h2 class="ic" style="font-size:30px;color:black"></h2><h2 id="temp" class="temp" style="display:flex;align-items:center;color:black;font-size: 30px;font-family: montserrat;font-weight: 400;margin-left: 15px;">hello</h2></div>
+
     <div class="bottomdiv">
-        <div class="gu"><h1 id="time" class="time" style="color:rgb(255, 255, 255);font-size: 80px;margin-left: 30px;margin-bottom: 0px;
-    background-color: rgba(255, 255, 255, 0);
-    border-radius: 100px;">12:30</h1>
-    <div style="display:flex;align-items: center;width:390px;justify-content: end ;margin-bottom: 0px;"><h2 class="ic"></h2><h2 id="temp" class="temp" style="display:flex;align-items:center"></h2></div>
+
+        <div class="gu"><h1 id="time" class="time" style="color:rgb(255, 255, 255);font-size: 100px;margin-left: 30px;margin-bottom: 0px;font-family: comfortaa;">12:30</h1>
+
         
         </div>
-
-        <div style="font-family: montserrat;width:40%;display:flex;flex-direction: column;align-items: flex-start;justify-content: flex-end;"><i class="fi fi-rr-picture"></i><p style="margin-right: 5%;padding:10px;background-color: white;border-radius: 100px;color:black" id="imagename"> Images slideshow created for you</p><p style="margin-right:5%;">This image is hosted by home server, connect to a device to add more images to show here.</p></div>
 
     </div>
 
@@ -98,10 +86,11 @@
 
     <div class="container" id="container1" style="display:flex">
         <div class="toppanel">
-           <div style="display:flex";height:100%;align-items:center;><div id="topbal"></div>
-            <p class="greetings" style="color: black;font-family:montserrat;font-weight:500;font-size: 25px;margin-left: 30px;"> Good morning</p>
-           </div>
-            <p id="time" class="time">12:30</p>
+        <p class="greetings" style="color: black;font-family:montserrat;font-weight:500;font-size: 25px;margin-left: 30px;"> Good morning</p>
+        <p id="prompt">hello</p>
+           <div style="display:flex";height:100%;align-items:center;>
+          
+            <p id="time" class="time">12:30</p> </div>
            </div>
         
       <!-- <p class="day" id="d1">
@@ -116,7 +105,8 @@
                     <p><i class="fi fi-ts-music-alt"></i> Home Music</p>
                     <div id="pla">
                         <div id="songimg"></div>
-                        <h5 id="title">Play some music using "play relaxing music" command.</h5>
+                        <h5 id="title">No music playing.</h5>
+                        <h6>Playing on Home Hub</h6>
                         <row><button><i class="fi fi-ts-step-backward"></i></button><button><i class="fi fi-tr-pause-circle"></i></button><button><i class="fi fi-ts-step-forward"></i></button></row>
                         <audio  id="musicplayer">
                         </audio>
@@ -129,9 +119,9 @@
                 <div class="seccaldiv">
                 <div>
                     <h3 id="calheading">WEATHER</h3>
-                    <p>Home Commands</p>
+                    
                     <h2 id="caltext">What is the weather in delhi</h2>
-
+<p id="jht">Command 3 out of 10</p>
                 </div>
                 <div class="renderdiv">
                      <h4 class="day" id="d1">
@@ -152,7 +142,7 @@
             </div>
             <div class="weathericon" id="weathericon" >
                 <h2 id="ic" class="ic"></h2>
-                <p id="desc2" style="font-weight: 500;font-family: montserrat;font-size: 30px;"></p>
+                <p id="desc2" style="font-weight: 200;font-family: lexend;font-size: 30px;"></p>
                 <div class="daynight">
                     <div><i class="fi fi-rr-brightness"></i>
                         <p id="day" style="font-size: 20px;">12:30</p>
@@ -184,13 +174,14 @@
     <div class="weatherapp" id="weatherapp">
         <div class="div1" id="div1">
             <div class="topbar1" id="topbar1">
-                <h2 class="city" style="font-size: 30px;margin:0px;margin-top:0px;margin-bottom: 20px;">Raebareli .• IN
+                <h2 class="city" style="font-size: 25px;margin:0px;margin-top:0px;margin-bottom: 20px;margin-left: 30px;">Raebareli .• IN
                 </h2>
-                <h2 id="d5" class="day" style="font-size: 30px;font-family: lexend;margin:0px;font-weight: 300;">24
+                <h2 id="d5" class="day" style="font-size: 25px;font-family: lexend;margin:0px;font-weight: 300;">24
                     march 2025</h2>
             </div>
             <h1 class="temp" id="maintemp" style="
     font-family:lexend;
+    font-weight: 600;
     color: rgb(0, 0, 0);
     margin:0px;
     transition: all 0.6s ease;">
@@ -199,44 +190,58 @@
             <div class="hihi">
                 <h2 id="hilo"></h2>
             </div>
-            <p class="desc" style="font-size: 40px;font-family: lexend;"></p>
-            <div class="forecast" id="forecast">
-
-            </div>
-
+            <p class="desc" style="font-size: 40px;font-family: lexend;font-weight: 500;"></p>
         </div>
-        <div class="div2" id="div2">
-            <div class="topbar2">
-                <p style="color:rgb(255, 255, 255);height: 10vh;font-size: 35px;margin-top: 0px;align-self: flex-start;width:fit-content;margin-left: 10px;" id="greetings" class="greetings"></p> 
+       <div class="div2" id="div2">
+           <div class="topbar2">
+                <p id="greetings" class="greetings" style=" padding:10px;
+    background-color: black;
+    color:white;
+    margin-left: 30px;
+    width:fit-content;
+    border-radius: 100px;"></p> 
                 <div class="cont">
                     <h3 id="h">Humidity  .• 60% </h3>
                     <h3 id="w">Wind now .• 34 km/h </h3>
                     <h3 id="v">Visibility .• 1000 </h3>
-
                 </div>
             </div>
-            <h2 class="gy">Upcoming hours</h2>
+             <div class="forecast" id="forecast">
+
+            </div>
             <div class="hourly" id="hourly">
             </div>
 
         </div>
+
 
     </div>
 
 
     <div class="calendardiv" id="calendardiv">
         <div class="cont1">
-             <h1 id=monther style="color:rgb(0,92,255);margin-top: 10px;"></h1>
-           <h1 id="dter" style="margin-top: 0px;"></h1>
+             <h1 id=monther style="color:rgb(0, 0, 0)">Today : 12 Apr</h1>
+             <h1 id="dter">Sunday</h1>
           
         </div>
         <div class="cont2">
-            <h3>Events for today.</h3>
+            <h3 style="font-size: 30px;margin-left: 30px;font-weight: 300;color:grey">Events for today.</h3>
             <div class="events" id="events">
-                <div>
+                <div class="event">
+                    <div class="evinfo">
                     <h3>The event is set for today.</h3>
                     <h4>Happy diwali</h4>
-                    <h5></h5>
+                    <h5>today 12 am to 12 pm</h5></div>
+                    <div class="evimg"></div>
+                </div>
+                 <div class="event">
+                    <div class="evinfo">
+
+                    <h3>The event is set for today.</h3>
+                    <h4>Happy diwali</h4>
+                    <h5></h5></div>
+                    <div class="evimg"></div>
+
                 </div>
             </div>
 
