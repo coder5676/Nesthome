@@ -26,6 +26,7 @@ window.addEventListener("offline", () => {
   console.log("Internet disconnected");
 
 });
+let curricon=`<i class="fi fi-rr-brightness"></i>`;
 const maindiv = document.getElementById("container");
 let currcity="";
 let currtemp="";
@@ -75,19 +76,23 @@ const day = now.getDay();
   hours = hours % 12 || 12;
 
   const time = `${hours < 10 ? "0" + hours : hours}:${minutes < 10 ? "0" + minutes : minutes
-    } ${ampm}`;
+    }`;
 console.log(time)
 document.querySelectorAll(".time").forEach((el)=>{
   el.innerText=time
 })
   
 if(period=="Night"){
-
+curricon=`<i class="fi fi-rr-moon-stars"></i>`;
   document.getElementById("card1").style.backgroundImage=`url("http://127.0.0.1:8000/thumbnails/day-and-night-portrait-background-with-trees-silhouette-free-vector2.jpg")`
+  document.getElementById("div1").style.backgroundImage=`url("http://127.0.0.1:8000/thumbnails/day-and-night-portrait-background-with-trees-silhouette-free-vector2.jpg")`
+
 }
 else{
+curricon=`<i class="fi fi-rr-brightness"></i>`;
 
   document.getElementById("card1").style.backgroundImage=`url("http://127.0.0.1:8000/thumbnails/day-and-night-portrait-background-with-trees-silhouette-free-vector.jpg")`
+  document.getElementById("div1").style.backgroundImage=`url("http://127.0.0.1:8000/thumbnails/day-and-night-portrait-background-with-trees-silhouette-free-vector.jpg")`
 
 }
   // Date
@@ -150,7 +155,7 @@ async function getlocation() {
 
 function weathericon(description) {
   const desc = ["clear sky", "few clouds", "scattered clouds", "broken clouds", "shower rain", "rain", "thunderstorm", "snow", "mist", "overcast clouds", "light rain", "moderate rain", "heavy intensity rain", "haze", "light intensity shower rain","dust"];
-  const descicon = [`<i class="fi fi-tr-sun"></i>`, `<i class="fi fi-tr-cloud-sun"></i>`, '<i class="fi fi-rr-clouds-sun"></i>', '<i class="fi fi-tr-clouds"></i>', '<i class="fi fi-tr-cloud-showers-heavy"></i>', '<i class="fi fi-ts-umbrella"></i>', '<i class="fi fi-tr-thunderstorm"></i>', '<i class="fi fi-rr-snowflakes"></i>', '<i class="fi fi-rr-smog"></i>', '<i class="fi fi-ts-clouds"></i>', '<i class="fi fi-tr-cloud-rain"></i>', '<i class="fi fi-rs-cloud-hail-mixed"></i>', '<i class="fi fi-rr-cloud-hail"></i>', '<i class="fi fi-rr-cloud-hail"></i>', '<i class="fi fi-ts-cloud-showers-heavy"></i>','<i class="fi fi-rr-sun-dust"></i>'];
+  const descicon = [curricon, `<i class="fi fi-tr-cloud-sun"></i>`, '<i class="fi fi-rr-clouds-sun"></i>', '<i class="fi fi-tr-clouds"></i>', '<i class="fi fi-tr-cloud-showers-heavy"></i>', '<i class="fi fi-ts-umbrella"></i>', '<i class="fi fi-tr-thunderstorm"></i>', '<i class="fi fi-rr-snowflakes"></i>', '<i class="fi fi-rr-smog"></i>', '<i class="fi fi-ts-clouds"></i>', '<i class="fi fi-tr-cloud-rain"></i>', '<i class="fi fi-rs-cloud-hail-mixed"></i>', '<i class="fi fi-rr-cloud-hail"></i>', '<i class="fi fi-rr-cloud-hail"></i>', '<i class="fi fi-ts-cloud-showers-heavy"></i>','<i class="fi fi-rr-sun-dust"></i>'];
 
   const position = desc.indexOf(description);
   return descicon[position];
@@ -300,14 +305,16 @@ function setdata(data) {
 
   let html = "";
   for (let i = 0; i < result.length; i++) {
-    html += `<div><p>${result[i].day}</p>
+    html += `
+   
+    <div><h5>${result[i].day}</h5>
                     <h2 class="temp" id="temp">${Math.round(result[i].avgTemp)}°</h2>
                     <p style="color:black;font-size:30px">${weathericon(result[i].weather)}</p>
                 </div>`
 
   }
 
-  document.getElementById("forecast").innerHTML = html;
+  document.getElementById("forecast").innerHTML =html;
 
   let html2 = ""
   for (let i = 0; i < todayForecast.length; i++) {
@@ -500,6 +507,7 @@ else {
   calinfo.style.backgroundImage=`url(http://127.0.0.1:8000/thumbnails/${imagearr[index]})`;
   caltext.innerHTML=prompts[index];
   calheading.innerHTML=heading[index];
+  document.getElementById("jht").innerHTML=`Command ${index+1} out of 10.`
   index++;
 
   if (index >= heading.length) {
@@ -535,7 +543,7 @@ function setslideshow(){
     index2=0;
   }
   document.body.style.backgroundImage=`url(http://127.0.0.1:8000/images//${slideshowarr[index2]})`;
-  document.getElementById("imagename").innerHTML=slideshowarr[index2];
+
  // document.getElementById("container2img").src=`http://127.0.0.1:8000/images/${slideshowarr[index2]}`;
 
   index2++;
@@ -576,26 +584,27 @@ export function openweatherconsole() {
 }
   speak(`Today’s weather in ${currcity} is ${currtemp} degree celcius, ${currdesc} with humidity of ${currhumidity} percent.`)
   document.getElementById("weatherapp").style.display = "flex";
+  document.getElementById("div1").style.width="100%";
   document.getElementById("maintemp").classList.remove("simpletext");
 
   document.getElementById("maintemp").classList.add("fullscreentext");
-  document.getElementById("div1").style.width = "100%";
+
   document.getElementById("div2").style.display = "none";
   document.getElementById("topbar1").style.display = "none";
   document.getElementById("forecast").style.display = "none";
 
   setTimeout(() => {
     document.getElementById("maintemp").classList.add("simpletext");
+  document.getElementById("div1").style.width="50%";
 
-    document.getElementById("div1").style.width = "75%";
     document.getElementById("div2").style.display = "flex";
     document.getElementById("topbar1").style.display = "flex";
     document.getElementById("forecast").style.display = "flex";
   }, 3000);
-  setTimeout(() => {
+  /*setTimeout(() => {
     document.getElementById("weatherapp").style.display = "none";
     getlocation();
-  }, 12000);
+  }, 12000);*/
 }
 
 document.getElementById("card1").addEventListener("click", () => {
