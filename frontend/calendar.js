@@ -9,12 +9,8 @@ setTimeout(() => {
         document.getElementById("calendardiv").style.display="none";
 
 },10000);
-const months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
-const day=new Date();
-let date=day.getDate();
-let month=months[day.getMonth()];
-document.getElementById("dter").innerHTML=date;
-document.getElementById("monther").innerHTML=month;
+
+
 
 
 
@@ -47,11 +43,13 @@ export async function showevents() {
     if (event.date.toLowerCase().trim() === normalizedToday) {
 
       html += `
-        <div>
-        <h6>This event is set for today only.</h6>
-          <h4>${title}</h4>
-          <h5>Event Timing: 12:00 AM to 11:59 PM</h5>
-        </div>
+       <div class="event">
+                    <div class="evinfo">
+                    <h3>The event is set for today.</h3>
+                    <h4>${title}</h4>
+                    <h5>today 12 am to 12 pm</h5></div>
+                    <div class="evimg"></div>
+                </div>
       `;
       html2+=`<p id="evname"> ${title}</p>
 
