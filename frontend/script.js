@@ -375,9 +375,9 @@ function setdetails(data) {
     el.innerHTML = weathericon(description)
 
   });
-  document.getElementById("h").innerHTML = `Today's humidity is ${data.main.humidity} %.`;
-  document.getElementById("w").innerHTML = `Wind is blowing at a speed of ${data.wind.speed} km/h.`;
-  document.getElementById("v").innerHTML = `Driving visibility is approx ${data.visibility} meters.`;
+  document.getElementById("h").innerHTML = `<i class="fi fi-rr-mountains"></i> ${data.main.humidity} %`;
+  document.getElementById("w").innerHTML = `<i class="fi fi-rr-fan"></i> ${data.wind.speed} km/h`;
+  document.getElementById("v").innerHTML = `<i class="fi fi-rr-car-alt"></i> ${data.visibility} m`;
   document.getElementById("day").innerHTML = convert(data.sys.sunrise);
   document.getElementById("night").innerHTML = convert(data.sys.sunset);
 
