@@ -1,16 +1,21 @@
-import { speak } from "./voicerecognition.js";
+
 let currentIndex = 0;
-const audio=document.getElementById("musicplayer");
+
+  // get audio/video here
+
+let audio=document.getElementById("musicplayer"); 
+
 let volume=0.5;
 let playlist=[];
 function suffleplaylist(arr){
-  for (let i = arr.length - 1; i > 0; i--) {
-  const j = Math.floor(Math.random() * (i + 1));
+  let copy = [...arr];
 
-  // swap
-  [arr[i], arr[j]] = [arr[j], arr[i]];
-}
-return arr
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+
+  return copy;
 }
 export function createplaylist(playlistqueue){
   playlist=suffleplaylist(playlistqueue);
@@ -49,74 +54,78 @@ export function setvolume(value){
 
   // update currently playing audio
   audio.volume = volume;
+  video.volume=volume;
 
 }    
 console.log(volume);
-let currvideo="" 
-  const video = document.getElementById("videoplayer");   
+
+
+
+let currvideo=""; 
+const video = document.getElementById("videoplayer");
+let prevvideo="";
+
+
+
+
 export async function playvideo(videoname) {
-
-  const videodiv = document.getElementById("videodiv");
-
-  videodiv.style.display = "block";
 
   try {
 
+    // stop music
+    audio.pause();
+if (currvideo) {
+
+      await closevideoplayer();
+
+    }
+    // fetch movie info
     const res = await fetch(
-      `http://127.0.0.1:8000/movie/${videoname}`
+      `http://127.0.0.1:8000/movie/${encodeURIComponent(videoname)}`
     );
 
     const data = await res.json();
 
-    console.log(data);
+    if (!data.found) {
 
-    if (data.found && data.file) {
-currvideo=videoname;
-      const newSrc =
-        `../videos/${data.file}`;
-
-      // prevent reloading same video
-      if (!video.src.includes(data.file)) {
-
-        video.pause();
-
-        video.src = newSrc;
-        video.volume=volume;
-        video.onloadedmetadata = async () => {
-
-          video.currentTime =
-            data.last_watched || 0;
-
-          try {
-
-            await video.play();
-            if(audio.src){
-            audio.pause();}
-
-          } catch (err) {
-
-            console.log(err);
-
-          }
-
-        };
-
-      } else {
-
-        // already loaded
-        video.play();
-        if(audio.src){
-            audio.pause();}
-
-      }
-
-    } else {
-
-      console.log("No video found");
+      console.log("Video not found");
+      return;
 
     }
 
-  } catch (err) {
+    currvideo = videoname;
+
+console.log(video.duration,data.last_watched  );
+    // load source
+    video.src =
+      `http://127.0.0.1:8000/videos/${encodeURIComponent(data.file)}`;
+
+    video.volume = volume;
+
+    document.getElementById("videodiv").style.display = "block";
+
+    // wait metadata
+    video.onloadedmetadata = () => {
+     
+      video.currentTime=data.last_watched || 0;
+    };
+
+    // wait until browser is ready
+   video.onseeked = async () => {
+
+  try {
+
+    await video.play();
+
+  } catch(err) {
+
+    console.log(err);
+
+  }
+
+};
+
+  } catch(err) {
 
     console.log(err);
 
@@ -124,14 +133,17 @@ currvideo=videoname;
 
 }
 
+
 export async function closevideoplayer() {
-  // hide the video container
-  document.getElementById("videodiv").style.display = "none";
 
   const video = document.getElementById("videoplayer");
 
   // log current playback time
-  const currenttime=Math.floor(video.currentTime)
+  let currenttime=Math.floor(video.currentTime)
+  
+  if(video.currentTime >= video.duration - 1) {
+    currenttime = 0;
+}
   video.pause();
 
   // STEP 2: detach source WITHOUT load()
@@ -155,7 +167,6 @@ export async function closevideoplayer() {
   
 }
 
-
 const thumbnail=document.getElementById("entertainment");
 const title=document.getElementById("title");
 export async function playmusic(name){
@@ -169,29 +180,35 @@ export async function playmusic(name){
         }
 
        audio.pause();
+       if (currvideo){
+        await closevideoplayer()
+       }
        audio.currentTime=0;
 
       // SET MUSIC FILE
-      audio.src = `../music/${data.file}`;
-      audio.volume=volume;
+      audio.src = `http://127.0.0.1:8000/musicfolder/${data.file}`;
+     
       audio.load();
 
       // RESUME FROM LAST TIME
       audio.onloadedmetadata = async () => {
 
             try{
+              audio.volume = volume;
                 await audio.play();
-                video.pause();
+               
             } catch(err){
                 console.log(err);
             }
 
         };
+     
         thumbnail.style.backgroundImage =
-            `url('../thumbnails/${data.thumbnail}')`;
-
+            `url('http://127.0.0.1:8000/thumbnails/${data.thumbnail}')`;
+           
+document.getElementById("songimg").style.backgroundImage=`url('http://127.0.0.1:8000/thumbnails/${data.thumbnail}')`;
         title.innerHTML =
-            data.name + "...";
+            data.name.slice(0,36) + "...";
 
   } catch (err) {
 
@@ -210,79 +227,8 @@ export function pausevideo(){
     video.pause();
   }
 
-}/*
-let moviedata={}
-
-    async function loadmoviedata(){
-     const response = await fetch(
-        "http://127.0.0.1:8000/movie-data"
-    );
-    moviedata=await response.json();
-}
-let moviekeys=[]
-
-let index=0
-const moviebox=document.getElementById("moviebox");
-export async function openvideotube(){
-  moviebox.style.display="flex";
-  await loadmoviedata();
-  moviekeys = Object.keys(moviedata);
-  moviekeys = moviekeys.filter(key => key.trim() !== "");
-  showmovies();
-  setInterval(() => {
-    showmovies()
-  }, 5000);
-
-}*/
-function formatTime(seconds) {
-
-  seconds = Math.floor(seconds);
-
-  const hrs = Math.floor(seconds / 3600);
-  const mins = Math.floor((seconds % 3600) / 60);
-  const secs = seconds % 60;
-
-  let result = "";
-
-  if (hrs > 0) {
-    result += `${hrs} hour `;
-  }
-
-  if (mins > 0) {
-    result += `${mins} minute `;
-  }
-
-  if (secs > 0 || result === "") {
-    result += `${secs} sec`;
-  }
-
-  return result.trim();
-}/*
-function showmovies(){
-   if(index>=moviekeys.length){
-    index=0;
-  }
-  const moviename=moviekeys[index]
-  const movie =moviedata[moviename]
-  console.log(movie)
-  document.getElementById("moviethumbnail").style.backgroundImage=`url('../thumbnails/${movie.thumbnail}')`;
-  document.getElementById("moviebox").style.backgroundImage=`url('../thumbnails/${movie.thumbnail}')`;
-  document.getElementById("vidname").innerHTML=`${moviename.slice(0,30)}...`;
-  document.getElementById("watchtime").innerHTML=`Watched: ${formatTime(movie.last_watched)}`;
-  document.getElementById("playmovie").addEventListener("click",()=>{
-    playvideo(moviename);
-  })
-  let tok=""
-  for (let  token of movie.tokens){
-    tok+=`${token} . `
-
-  } 
-  document.getElementById("tokens").innerHTML=tok;
- 
-  index++;
 }
 
-*/
 
 export function closevideotube(){
   moviebox.style.display="none";
