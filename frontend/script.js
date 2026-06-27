@@ -85,14 +85,22 @@ document.querySelectorAll(".time").forEach((el)=>{
 if(period=="Night"){
 curricon=`<i class="fi fi-rr-moon-stars"></i>`;
   document.getElementById("card1").style.backgroundImage=`url("http://127.0.0.1:8000/thumbnails/day-and-night-portrait-background-with-trees-silhouette-free-vector2.jpg")`
-  document.getElementById("div1").style.backgroundImage=`url("http://127.0.0.1:8000/thumbnails/day-and-night-portrait-background-with-trees-silhouette-free-vector2.jpg")`
+document.getElementById("forecast").style.backgroundColor="black";
+document.getElementById("hourly").style.backgroundColor="black";
+document.getElementById("div1").style.backgroundColor="black";
+document.getElementById("weathericon").style.backgroundColor="black";
+
 
 }
 else{
 curricon=`<i class="fi fi-rr-brightness"></i>`;
 
   document.getElementById("card1").style.backgroundImage=`url("http://127.0.0.1:8000/thumbnails/day-and-night-portrait-background-with-trees-silhouette-free-vector.jpg")`
-  document.getElementById("div1").style.backgroundImage=`url("http://127.0.0.1:8000/thumbnails/day-and-night-portrait-background-with-trees-silhouette-free-vector.jpg")`
+document.getElementById("forecast").style.backgroundColor="dodgerblue";
+document.getElementById("hourly").style.backgroundColor="dodgerblue";
+document.getElementById("div1").style.backgroundColor="dodgerblue";
+document.getElementById("weathericon").style.backgroundColor="dodgerblue";
+
 
 }
   // Date
@@ -472,28 +480,34 @@ export function generateQR(text) {
 }
 
 const heading=["WEATHER","CALENDAR","EVENT","MOVIES","TIMER","REMINDER","PICTURE FRAME","CONNECT","NIGHT MODE","Display"]
-const imagearr=["sad-female-character-standing-rain_132971-163.avif","img2.webp","img4.webp","kung-fu-panda-po-jungle-staff-desktop-wallpaper-cover.jpg","timer.gif","reminder.webp","wall5.webp","ai.gif","woman-sleeping-in-bedroom-vector.jpg","mg3.avif"]
+const imagearr=["sad-female-character-standing-rain_132971-163.avif","img2.webp","img4.webp","kung-fu-panda-po-jungle-staff-desktop-wallpaper-cover.jpg","timer.gif","mario.jpeg","wall5.webp","ai.gif","woman-sleeping-in-bedroom-vector.jpg","mg3.avif"]
 const prompts=["What is the weather in delhi.","What is the day today","Add an event 'Go Cycling' for 23 june 2026","Play 'Kung Fu Panda 3' movie","Add a timer for 20 minutes","Add a reminder 'watch movie' at 6 pm for today.","Set a slideshow of family photos.","Connect to my device.","Turn on night mode.","Turn on display mode"]
 const calinfo=document.getElementById("calinfo");
 const caltext=document.getElementById("caltext");
 const calheading=document.getElementById("calheading");
+const rnimg=document.getElementById("rnimg");
 let index=0;
 
 function setanimaitononscreen(){
  if (index == 1) {
 
     document.getElementById("d1").style.display = "block";
+    document.getElementById("rnimg").style.display="none";
 
 }
 else if (index == 2) {
 
     document.getElementById("evcal2").style.display = "flex";
     document.getElementById("d1").style.display = "none";
+    document.getElementById("rnimg").style.display="none";
+
     showevents();
 
 }
 else if(index==7){
   document.getElementById("qrcode").style.display="flex";
+    document.getElementById("rnimg").style.display="none";
+
   
 }
 else {
@@ -501,10 +515,14 @@ else {
     document.getElementById("d1").style.display = "none";
     document.getElementById("evcal2").style.display = "none";
   document.getElementById("qrcode").style.display="none";
+    document.getElementById("rnimg").style.display="flex";
+
 
 
 }
   calinfo.style.backgroundImage=`url(http://127.0.0.1:8000/thumbnails/${imagearr[index]})`;
+  rnimg.style.backgroundImage=`url(http://127.0.0.1:8000/thumbnails/${imagearr[index]})`;
+
   caltext.innerHTML=prompts[index];
   calheading.innerHTML=heading[index];
   document.getElementById("jht").innerHTML=`Command ${index+1} out of 10.`
@@ -552,6 +570,7 @@ function setslideshow(){
 export function nightmode(){
   document.getElementById("container3").style.display="flex";
   document.getElementById("container2").style.display="none";
+  document.getElementById("container1").style.display="flex";
 
 clearInterval(slideshowinterval);
 
@@ -601,10 +620,10 @@ export function openweatherconsole() {
     document.getElementById("topbar1").style.display = "flex";
     document.getElementById("forecast").style.display = "flex";
   }, 3000);
-  /*setTimeout(() => {
+  setTimeout(() => {
     document.getElementById("weatherapp").style.display = "none";
     getlocation();
-  }, 12000);*/
+  }, 12000);
 }
 
 document.getElementById("card1").addEventListener("click", () => {
