@@ -39,7 +39,7 @@
 <div class="moviebox" id="moviebox">
         <div id="movieintbar">
         <div class="topbarmov">
-            <p style="box-shadow:0px 0px 10px 10px rgba(255, 255, 255, 0.338);color:white">Home TV</p>
+            <div style="width:200px;height:80px;" id="logo"></div>
             <p id="a1">Videos</p>
             <p id="a2">Music</p>
             <p id="a3">Images</p>
@@ -48,9 +48,9 @@
             <div class="movinfo">
                 <h2 id="g1">Home movies</h2>
                 <h1 id="g2">Despicable me 3</h1>
-                <p id="g4"></p>
+                <p id="g4">grumovie, minions, hello, my, name</p>
                 
-                <h5>Say "Play" to play this.</h5>
+                <h5>Play now</h5>
             </div>
             <div id="moviethumbnail"></div>
             
@@ -88,7 +88,7 @@
         <div class="toppanel">
         <p class="greetings" style="color: black;font-family:montserrat;font-weight:500;font-size: 25px;margin-left: 30px;"> Good morning</p>
         <p id="prompt">hello</p>
-           <div style="display:flex";height:100%;align-items:center;>
+           <div style="display:flex";>
           
             <p id="time" class="time">12:30</p> </div>
            </div>
@@ -106,7 +106,7 @@
                     <div id="pla">
                         <div id="songimg"></div>
                         <h5 id="title">No music playing.</h5>
-                        <h6>Playing on Home Hub</h6>
+                        <h6><i class="fi fi-rr-signal-stream"></i> Playing on Home Hub</h6>
                         <row><button><i class="fi fi-ts-step-backward"></i></button><button><i class="fi fi-tr-pause-circle"></i></button><button><i class="fi fi-ts-step-forward"></i></button></row>
                         <audio  id="musicplayer">
                         </audio>
@@ -123,7 +123,7 @@
                     <h2 id="caltext">What is the weather in delhi</h2>
 <p id="jht">Command 3 out of 10</p>
                 </div>
-                <div class="renderdiv">
+                <div class="renderdiv" style="justify-content:center ;">
                      <h4 class="day" id="d1">
             Sunday .• 1 March 2004 .• Guru purnima
                      </h4>
@@ -131,6 +131,7 @@
                         
                      </div>
                      <div id="qrcode" style="display:flex"></div>
+                     <div class="rnimg" id="rnimg"></div>
                 </div></div>
 
             </div>
@@ -142,7 +143,7 @@
             </div>
             <div class="weathericon" id="weathericon" >
                 <h2 id="ic" class="ic"></h2>
-                <p id="desc2" style="font-weight: 200;font-family: lexend;font-size: 30px;"></p>
+                <p id="desc2" style="font-weight: 500;font-family: lexend;font-size: 30px;"></p>
                 <div class="daynight">
                     <div><i class="fi fi-rr-brightness"></i>
                         <p id="day" style="font-size: 20px;">12:30</p>
@@ -176,13 +177,13 @@
             <div class="topbar1" id="topbar1">
                 <h2 class="city" style="font-size: 25px;margin:0px;margin-top:0px;margin-bottom: 20px;margin-left: 30px;">Raebareli .• IN
                 </h2>
-                <h2 id="d5" class="day" style="font-size: 25px;font-family: lexend;margin:0px;font-weight: 300;">24
+                <h2 id="d5" class="day" style="font-size: 25px;font-family: lexend;margin:0px;font-weight: 300;margin-right:30px">24
                     march 2025</h2>
             </div>
             <h1 class="temp" id="maintemp" style="
     font-family:lexend;
     font-weight: 600;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     margin:0px;
     transition: all 0.6s ease;">
 
@@ -195,7 +196,7 @@
        <div class="div2" id="div2">
            <div class="topbar2">
                 <p id="greetings" class="greetings" style=" padding:10px;
-    background-color: black;
+    background-color:dodgerblue;
     color:white;
     margin-left: 30px;
     width:fit-content;
@@ -216,31 +217,18 @@
 
 
     </div>
-
-    //changed
 <div class="player" id="player">
-     <div class="controls">
-
-        <input
-            type="text"
-            id="searchinput"
-            placeholder="Search video..."
-        >
-
-        <button id="search">
-            Search
-        </button>
-
-    </div>
+    
 
     <div id="youtubeplayer"></div>
+    <div id="overlay"></div>
 
 </div>
 
     <div class="calendardiv" id="calendardiv">
         <div class="cont1">
-             <h1 id=monther style="color:rgb(0, 0, 0)">Today : 12 Apr</h1>
-             <h1 id="dter">Sunday</h1>
+             <h1 id="monther" class="day" style="color:rgb(0, 0, 0)">Today : 12 Apr</h1>
+          
           
         </div>
         <div class="cont2">
@@ -285,5 +273,5 @@
 <script type="module" src="reminder.js"></script>
 <script type="module" src="tv.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
-<script src="youtubeplayer.js" type="module"></script>
 <script src="https://www.youtube.com/iframe_api"></script>
+<script src="youtubeplayer.js" type="module"></script>
