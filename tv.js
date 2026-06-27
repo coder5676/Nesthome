@@ -9,8 +9,7 @@ let musicarr={};
 let imagesarr={};
 let currmovie="";
 let currmusic="";
-const musicthumbnail=["wolfgang-hasselmann-nGtKRIcOXqI-unsplash.jpg","sarvesh-phansalkar-lUYibzci_aU-unsplash.jpg","ruedi-haberli-ZcVd6rcHSbg-unsplash.jpg","peter-thomas-ZIfKCrvR81I-unsplash.jpg","nir-himi-UbIvR3B4NJ8-unsplash.jpg","nir-himi-qNk8jYhsljc-unsplash.jpg","nico-ruge-E4HyfQR387I-unsplash.jpg","maximilian-bungart-7JY7eaRChXk-unsplash.jpg","marek-piwnicki-NwZmYW5ETnE-unsplash.jpg","marc-julien-Nq1W3c8add4-unsplash.jpg","liana-s-k7RLGSA471U-unsplash.jpg","krists-luhaers-xS_9-CLMZAQ-unsplash.jpg","krists-luhaers-e_z1BLzRbS8-unsplash.jpg","doncoombez-UNeHrHb7eII-unsplash.jpg","declan-sun-qnxteyXSLuk-unsplash.jpg","caleb-sebastian-ZZFPtxgDSbY-unsplash.jpg",
-  "arnaud-girault-kDXPmsjlms0-unsplash.jpg","anthony-robinson-ofc0E7YqnRY-unsplash.jpg"];
+
 const moviebox=document.getElementById("moviebox");
 const movthumbnail=document.getElementById("moviethumbnail");
 window.addEventListener("contextmenu", (e) => {
@@ -60,10 +59,10 @@ function updateUI() {
     movname.innerText=`${(moviearr[index][0]).slice(0,30)}...`;
     let tokenmov="";
     for (let token in moviearr[index][1].tokens){
-        tokenmov+=` ${moviearr[index][1].tokens[token]} |`
+        tokenmov+=` ${moviearr[index][1].tokens[token]} .`
 
     }
-    movtokens.innerText=`You can play this video using :${tokenmov}`;
+    movtokens.innerText=`${tokenmov}`;
 
 
   }
@@ -78,26 +77,17 @@ function updateUI() {
     mustop.style.color="black";
     imgtop.style.backgroundColor="transparent";
     imgtop.style.color="white";
-     if(musicarr[index][1].thumbnail==="none" ){
-          if(num>=musicthumbnail.length){
-            num=0;
-          }
-          bgthumbnail.style.backgroundImage=`url('http://127.0.0.1:8000/images/${musicthumbnail[num]}')`
-          movthumbnail.style.backgroundImage=`url('http://127.0.0.1:8000/images/${musicthumbnail[num]}')`
-          num+=1;
-        }
-        else{
     bgthumbnail.style.backgroundImage=`url('http://127.0.0.1:8000/thumbnails/${musicarr[index][1].thumbnail}')`;
     movthumbnail.style.backgroundImage=`url('http://127.0.0.1:8000/thumbnails/${musicarr[index][1].thumbnail}')`;
-        }
+        
     topheading.innerText="Home Music";
     movname.innerText=`${(musicarr[index][0]).slice(0,30)}...`;
     let tokenmus="";
     for (let token in musicarr[index][1].tokens){
-        tokenmus+=` ${musicarr[index][1].tokens[token]} |`
+        tokenmus+=` ${musicarr[index][1].tokens[token]} .`
 
     }
-    movtokens.innerText=`You can play this song using :${tokenmus}`;
+    movtokens.innerText=`${tokenmus}`;
   }
   else if(menu[selmenu]==="photos"){
     if(imagesarr.length === 0) return;
@@ -118,9 +108,9 @@ vdtop.style.backgroundColor="transparent";
     movname.innerText=`${(imagesarr[index][0]).slice(0,30)}...`;
     let tokenimg="";
     for (let token in imagesarr[index][1].tokens){
-        tokenimg+=`${imagesarr[index][1].tokens[token]} |`
+        tokenimg+=`${imagesarr[index][1].tokens[token]} .`
     }
-    movtokens.innerText=`You can set a slideshow by saying :${tokenimg}`;
+    movtokens.innerText=`${tokenimg}`;
 
   }
 }
