@@ -380,7 +380,7 @@ function setdetails(data) {
   document.getElementById("v").innerHTML = `<i class="fi fi-rr-car-alt"></i> ${data.visibility} m`;
   document.getElementById("day").innerHTML = convert(data.sys.sunrise);
   document.getElementById("night").innerHTML = convert(data.sys.sunset);
-
+ 
 
 
 }
